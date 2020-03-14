@@ -1,0 +1,52 @@
+﻿@model Red_System.Models.LoginProfessoreModel
+
+@{
+    ViewBag.Title = "LoginProfessore";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>
+            @Model.LoginLabel
+        </h2>
+    </div>
+</div>
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        @using (Html.BeginForm("LoginProfessore", "Home", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="col-md-offset-2 col-md-4">
+                    <div class="form-group">
+                        <label for="Username">@Model.UsernameLabel</label>
+                        @Html.TextBoxFor(t => t.Username, new { @class = "form-control fadeIn second", placeholder = Model.UsernameLabel })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-2 col-md-4">
+                    <div class="form-group">
+                        <label for="Password">@Model.PasswordLabel</label>
+                        @Html.PasswordFor(t => t.Password, new { @class = "form-control fadeIn third", placeholder = Model.PasswordLabel })
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-offset-4 col-md-4">
+                    <input type="submit" value="@Model.SendLabel" class="btn btn-primary" />
+                </div>
+            </div>
+            if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+            {
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-4">
+                        <p style="color:red">@Html.Raw(Model.ErrorMessage) </p>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>
