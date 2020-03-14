@@ -139,7 +139,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\DB\databaseprojectwork.sql" />
+    <Content Include="Content\DB\databaseprojectwork%281%29.sql" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -274,6 +274,7 @@
     <Compile Include="Models\Entities\User.cs" />
     <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Models\LoginProfessoreModel.cs" />
+    <Compile Include="Models\ProfessoreInsertClasseModel.cs" />
     <Compile Include="Models\ProfiloProfessoreModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

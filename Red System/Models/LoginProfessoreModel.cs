@@ -11,7 +11,6 @@ namespace Red_System.Models
         public string UsernameLabel { get; set; }
         public string PasswordLabel { get; set; }
         public string SendLabel { get; set; }
-
         public string Username { get; set; }
         public string Password { get; set; }
 

@@ -7,10 +7,10 @@
 </head>
 <body>
     <div>
-        <a href="~/Views/Reserved/HomeProfessore"><button>Pagina principale</button></a>
-        <a href="~/Views/Reserved/HomeProfessore"><button>Inserisci classe</button></a>
-        <a href="~/Views/Reserved/HomeProfessore"><button>Inserisci studente</button></a>
-        <a href="~/Views/Reserved/HomeProfessore"><button>Inserisci verifica</button></a>
+        <a href="~/Reserved/HomeProfessore/@(((Red_System.Models.Entities.Admin)Session["utenteLoggato"]).ID)"><button>Pagina principale</button></a>
+        <a href="~/Reserved/ProfessoreInsertClasse/@(((Red_System.Models.Entities.Admin)Session["utenteLoggato"]).ID)"><button>Inserisci classe</button></a>
+        <a href="~/Reserved/HomeProfessore/@(((Red_System.Models.Entities.Admin)Session["utenteLoggato"]).ID)"><button>Inserisci studente</button></a>
+        <a href="~/Reserved/HomeProfessore/@(((Red_System.Models.Entities.Admin)Session["utenteLoggato"]).ID)"><button>Inserisci verifica</button></a>
         @RenderBody()
     </div>
 </body>
