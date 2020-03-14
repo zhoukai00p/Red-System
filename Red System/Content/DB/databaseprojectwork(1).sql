@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mar 13, 2020 alle 14:17
+-- Creato il: Mar 14, 2020 alle 14:32
 -- Versione del server: 10.4.8-MariaDB
 -- Versione PHP: 7.3.11
 
@@ -32,7 +32,7 @@ CREATE TABLE `admin` (
   `ID` int(11) NOT NULL,
   `Cognome` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `Nome` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `User` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `Password` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -40,7 +40,7 @@ CREATE TABLE `admin` (
 -- Dump dei dati per la tabella `admin`
 --
 
-INSERT INTO `admin` (`ID`, `Cognome`, `Nome`, `User`, `Password`) VALUES
+INSERT INTO `admin` (`ID`, `Cognome`, `Nome`, `Username`, `Password`) VALUES
 (1, 'Mascaro', 'Simone', 'SUPERCAT92', 'mastermascaro');
 
 -- --------------------------------------------------------
@@ -59,6 +59,18 @@ CREATE TABLE `classi` (
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `professoreclasse`
+--
+
+CREATE TABLE `professoreclasse` (
+  `ID` int(11) NOT NULL,
+  `IDClasse` int(11) NOT NULL,
+  `IDProfessore` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `user`
 --
 
@@ -66,7 +78,8 @@ CREATE TABLE `user` (
   `ID` int(11) NOT NULL,
   `Cognome` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `Nome` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `Password` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `Password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `IDClasse` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -86,10 +99,19 @@ ALTER TABLE `classi`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indici per le tabelle `professoreclasse`
+--
+ALTER TABLE `professoreclasse`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `IDClasse` (`IDClasse`),
+  ADD KEY `IDProfessore` (`IDProfessore`);
+
+--
 -- Indici per le tabelle `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `IDClasse` (`IDClasse`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
@@ -108,10 +130,33 @@ ALTER TABLE `classi`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT per la tabella `professoreclasse`
+--
+ALTER TABLE `professoreclasse`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT per la tabella `user`
 --
 ALTER TABLE `user`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Limiti per le tabelle scaricate
+--
+
+--
+-- Limiti per la tabella `professoreclasse`
+--
+ALTER TABLE `professoreclasse`
+  ADD CONSTRAINT `professoreclasse_ibfk_1` FOREIGN KEY (`IDClasse`) REFERENCES `classi` (`ID`),
+  ADD CONSTRAINT `professoreclasse_ibfk_2` FOREIGN KEY (`IDProfessore`) REFERENCES `admin` (`ID`);
+
+--
+-- Limiti per la tabella `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`IDClasse`) REFERENCES `classi` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
