@@ -64,6 +64,16 @@ namespace Red_System.Helper
                 return classe;
         }
 
+        public static List<Classi> GetAllClassi()
+        {
+            var ListaClasse = new List<Classi>();
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                var sql = "select * from Classi";
+                ListaClasse = connection.Query<Classi>(sql).ToList();
+            }
+            return ListaClasse;
+        }
 
     }
 }

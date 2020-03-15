@@ -1,5 +1,61 @@
-﻿@{
+﻿@using Red_System.Models.Entities;
+@model Red_System.Models.ProfessoreInsertStudenteModel
+
+@{
     Layout = "~/Views/Shared/_LayoutProfessore.cshtml";
 }
 
 
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        @using (Html.BeginForm("ProfessoreInsertStudente", "Reserved", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <div class="row">
+                <div class="col-md-offset-2 col-md-4">
+                    <div class="form-group">
+                        <label for="Name">@Model.LabelNome</label>
+                        @Html.TextBoxFor(t => t.Studente.Nome, new { @class = "form-control fadeIn second", placeholder = Model.LabelNome })
+                        @Html.ValidationMessageFor(t => t.Studente.Nome)
+                    </div>
+                </div>
+                <div class="col-md-offset-2 col-md-4">
+                    <div class="form-group">
+                        <label for="Name">@Model.LabelCognome</label>
+                        @Html.TextBoxFor(t => t.Studente.Cognome, new { @class = "form-control fadeIn second", placeholder = Model.LabelCognome })
+                        @Html.ValidationMessageFor(t => t.Studente.Cognome)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-2 col-md-4">
+                    <div class="form-group">
+
+                            @foreach (var item in Model.Classe)
+                            {
+                                <div>
+                                    <p>@(item.Numero)@(item.Sezione) @(item.Indirizzo)</p>
+                                </div>
+                            }
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-4 col-md-4">
+                    <input type="submit" value="@Model.LabelButtonSend" class="btn btn-primary" />
+                </div>
+            </div>
+            if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+            {
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-4">
+                        <p class="field-validation-error">@Html.Raw(Model.ErrorMessage) </p>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>

@@ -73,5 +73,48 @@ namespace Red_System.Controllers
             DatabaseHelper.InsertClasse(model.Classe);
             return View(model);
         }
+
+
+
+        [HttpGet]
+        public ActionResult ProfessoreInsertStudente(int id)
+        {
+            var utenteLoggato = Session["utenteLoggato"];
+            if (utenteLoggato == null)
+            {
+                return RedirectToAction("LoginProfessore", "Home");
+            }
+
+
+            var model = new ProfessoreInsertStudenteModel();
+
+            model.Professore = (Admin)utenteLoggato;
+            if (model.Professore.ID != id)
+            {
+                return RedirectToAction("HomeProfessore", "Reserved", new { model.Professore.ID });
+            }
+            ProfessoreInsertStudenteLabel(model);
+            model.Classe = DatabaseHelper.GetAllClassi();
+            return View(model);
+        }
+
+        public static void ProfessoreInsertStudenteLabel(ProfessoreInsertStudenteModel model)
+        {
+            model.Title = "Red system";
+            model.Text = "<strong>Bold</strong> normal";
+
+            model.LabelNome = "Nome";
+            model.LabelCognome = "Cognome";
+            model.LabelClasse = "Classe";
+            model.LabelButtonSend = "Send";
+        }
+
+        [HttpPost]
+        public ActionResult ProfessoreInsertStudente(int id, ProfessoreInsertStudenteModel model)
+        {
+            ProfessoreInsertStudenteLabel(model);
+            //DatabaseHelper.InsertClasse(model.Classe);
+            return View(model);
+        }
     }
 }
