@@ -271,11 +271,13 @@
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Entities\Admin.cs" />
     <Compile Include="Models\Entities\Classi.cs" />
+    <Compile Include="Models\Entities\DomandeChiuse.cs" />
     <Compile Include="Models\Entities\User.cs" />
     <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Models\LoginProfessoreModel.cs" />
     <Compile Include="Models\ProfessoreInsertClasseModel.cs" />
     <Compile Include="Models\ProfessoreInsertStudenteModel.cs" />
+    <Compile Include="Models\ProfessoreInsertVerificaModel.cs" />
     <Compile Include="Models\ProfiloProfessoreModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

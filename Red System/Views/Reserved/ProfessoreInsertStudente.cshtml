@@ -32,13 +32,13 @@
             <div class="row">
                 <div class="col-md-offset-2 col-md-4">
                     <div class="form-group">
-
-                            @foreach (var item in Model.Classe)
-                            {
-                                <div>
-                                    <p>@(item.Numero)@(item.Sezione) @(item.Indirizzo)</p>
-                                </div>
-                            }
+                        @foreach (var item in Model.Classe)
+                        {
+                            <div>
+                                <p>@(item.Numero)@(item.Sezione) @(item.Indirizzo)</p>
+                            </div>
+                            @Html.DropDownListFor(t => t.Classe, new SelectList(Model.Classe, "Numero", "Sezione", "Indirizzo"))
+                        }
                     </div>
                 </div>
             </div>

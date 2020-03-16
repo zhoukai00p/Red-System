@@ -1,5 +1,88 @@
-﻿@{
+﻿@using Red_System.Models.Entities;
+@model Red_System.Models.ProfessoreInsertVerificaModel
+@{
     Layout = "~/Views/Shared/_LayoutProfessore.cshtml";
 }
 
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            @using (Html.BeginForm("ProfessoreInsertVerifica", "Reserved", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
 
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-4">
+                        <div class="form-group">
+                            <label for="Name">@Model.LabelDomanda</label>
+                            @Html.TextBoxFor(t => t.DomandeChiuse.Domanda, new { @class = "form-control fadeIn second", placeholder = Model.LabelDomanda })
+                            @Html.ValidationMessageFor(t => t.DomandeChiuse.Domanda)
+                        </div>
+                    </div>
+                    <div class="col-md-offset-2 col-md-4">
+                        <div class="form-group">
+                            <label for="Name">@Model.LabelOpzioneA</label>
+                            @Html.TextBoxFor(t => t.DomandeChiuse.OpzioneA, new { @class = "form-control fadeIn second", placeholder = Model.LabelOpzioneA })
+                            @Html.ValidationMessageFor(t => t.DomandeChiuse.OpzioneA)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-4">
+                        <div class="col-md-offset-2 col-md-4">
+                            <div class="form-group">
+                                <label for="Name">@Model.LabelOpzioneB</label>
+                                @Html.TextBoxFor(t => t.DomandeChiuse.OpzioneB, new { @class = "form-control fadeIn second", placeholder = Model.LabelOpzioneB })
+                                @Html.ValidationMessageFor(t => t.DomandeChiuse.OpzioneB)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-offset-2 col-md-4">
+                        <div class="form-group">
+                            <label for="Name">@Model.LabelOpzioneC</label>
+                            @Html.TextBoxFor(t => t.DomandeChiuse.OpzioneC, new { @class = "form-control fadeIn second", placeholder = Model.LabelOpzioneC })
+                            @Html.ValidationMessageFor(t => t.DomandeChiuse.OpzioneC)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-4">
+                        <div class="col-md-offset-2 col-md-4">
+                            <div class="form-group">
+                                <label for="Name">@Model.LabelOpzioneD</label>
+                                @Html.TextBoxFor(t => t.DomandeChiuse.OpzioneD, new { @class = "form-control fadeIn second", placeholder = Model.LabelOpzioneD })
+                                @Html.ValidationMessageFor(t => t.DomandeChiuse.OpzioneD)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-offset-2 col-md-4">
+                        <div class="form-group">
+                            <label for="Name">@Model.LabelOpzioneE</label>
+                            @Html.TextBoxFor(t => t.DomandeChiuse.OpzioneE, new { @class = "form-control fadeIn second", placeholder = Model.LabelOpzioneE })
+                            @Html.ValidationMessageFor(t => t.DomandeChiuse.OpzioneE)
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-4">
+                        <input type="submit" value="@Model.LabelButtonSend" class="btn btn-primary" />
+                    </div>
+                </div>
+                if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+                {
+                    <div class="row">
+                        <div class="col-md-offset-4 col-md-4">
+                            <p class="field-validation-error">@Html.Raw(Model.ErrorMessage) </p>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+*/

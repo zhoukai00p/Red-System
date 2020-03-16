@@ -116,5 +116,48 @@ namespace Red_System.Controllers
             //DatabaseHelper.InsertClasse(model.Classe);
             return View(model);
         }
+        public static void ProfessoreInsertVerificaLabel(ProfessoreInsertVerificaModel model)
+        {
+            model.Title = "Red system";
+            model.Text = "<strong>Bold</strong> normal";
+
+            model.LabelDomanda = "Domanda";
+            model.LabelOpzioneA = "A";
+            model.LabelOpzioneB = "B";
+            model.LabelOpzioneC = "C";
+            model.LabelOpzioneD = "D";
+            model.LabelOpzioneE = "E";
+        }
+        [HttpPost]
+        public ActionResult ProfessoreInsertVerifica(int id, ProfessoreInsertVerificaModel model)
+        {
+            ProfessoreInsertVerificaLabel(model);
+            //DatabaseHelper.InsertClasse(model.Classe);
+            return View(model);
+        }
+        [HttpGet]
+        public ActionResult ProfessoreInsertVerifica(int id)
+        {
+            var utenteLoggato = Session["utenteLoggato"];
+            if (utenteLoggato == null)
+            {
+                return RedirectToAction("LoginProfessore", "Home");
+            }
+
+
+            var model = new ProfessoreInsertVerificaModel();
+
+            model.Professore = (Admin)utenteLoggato;
+            if (model.Professore.ID != id)
+            {
+                return RedirectToAction("HomeProfessore", "Reserved", new { model.Professore.ID });
+            }
+            ProfessoreInsertVerificaLabel(model);
+            model.DomandeChiuse = DatabaseHelper.GetAllDomandeChiuse();
+            return View(model);
+        }
+
+
+
     }
 }

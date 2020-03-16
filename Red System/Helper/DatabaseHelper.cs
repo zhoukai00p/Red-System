@@ -63,6 +63,44 @@ namespace Red_System.Helper
                 }
                 return classe;
         }
+        public static Classi InsertDomandeChiuse(Classi classe)
+        {
+            try
+            {
+                /* var cerca = "SELECT C.Numero,C.Sezione FROM Classi C WHERE Numero=@Numero AND Sezione=@Sezione";
+                 var controlla = new Classi();
+
+                 using (var connection = new MySqlConnection(connectionString))
+                 {
+                     controlla = connection.Query<Classi>(cerca, classe).FirstOrDefault();
+                 }
+
+                 if(controlla != null )
+                 {*/
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    var sql = "INSERT INTO DomandeChiuse (ID,Domanda,OpzioneA,OpzioneB,OpzioneC,OpzioneD,OpzioneE)" +
+                        " VALUES (null,@Domanda,@OpzioneA,@OpzioneB,@OpzioneC,@OpzioneD,@OpzioneE); " +
+                        " SELECT CAST(LAST_INSERT_ID() as int ) ";
+                    classe.ID = connection.Query<int>(sql, classe).FirstOrDefault();
+                }
+            }
+            //}
+            /*
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    var sql = "INSERT INTO ProfessoreClasse (ID, IDClasse)"+
+                    "VALUES (null,@ID);"+
+                    "SELECT CAST(LAST_INSERT_ID() as int )"
+                }
+                */
+            catch (Exception ex)
+            {
+                //errore
+                return null;
+            }
+            return classe;
+        }
 
         public static List<Classi> GetAllClassi()
         {
@@ -75,5 +113,15 @@ namespace Red_System.Helper
             return ListaClasse;
         }
 
+        public static List<DomandeChiuse> GetAllDomandeChiuse()
+        {
+            var ListaDomandeChiuse = new List<DomandeChiuse>();
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                var sql = "select * from Classi";
+                ListaDomandeChiuse = connection.Query<DomandeChiuse>(sql).ToList();
+            }
+            return ListaDomandeChiuse;
+        }
     }
 }

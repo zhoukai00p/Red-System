@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mar 14, 2020 alle 14:32
+-- Creato il: Mar 16, 2020 alle 17:19
 -- Versione del server: 10.4.8-MariaDB
 -- Versione PHP: 7.3.11
 
@@ -56,6 +56,33 @@ CREATE TABLE `classi` (
   `Indirizzo` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dump dei dati per la tabella `classi`
+--
+
+INSERT INTO `classi` (`ID`, `Numero`, `Sezione`, `Indirizzo`) VALUES
+(1, 5, 'c', 'informatico'),
+(2, 5, 'e', 'informatico'),
+(3, 5, 'g', 'relazioni');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `domandechiuse`
+--
+
+CREATE TABLE `domandechiuse` (
+  `ID` int(11) NOT NULL,
+  `Domanda` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `OpzioneA` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `OpzioneB` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `OpzioneC` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `OpzioneD` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `OpzioneE` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `IDStudente` int(11) NOT NULL,
+  `IDProfessore` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 -- --------------------------------------------------------
 
 --
@@ -99,6 +126,14 @@ ALTER TABLE `classi`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indici per le tabelle `domandechiuse`
+--
+ALTER TABLE `domandechiuse`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `IDStudente` (`IDStudente`),
+  ADD KEY `IDProfessore` (`IDProfessore`);
+
+--
 -- Indici per le tabelle `professoreclasse`
 --
 ALTER TABLE `professoreclasse`
@@ -127,6 +162,12 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT per la tabella `classi`
 --
 ALTER TABLE `classi`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT per la tabella `domandechiuse`
+--
+ALTER TABLE `domandechiuse`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -144,6 +185,13 @@ ALTER TABLE `user`
 --
 -- Limiti per le tabelle scaricate
 --
+
+--
+-- Limiti per la tabella `domandechiuse`
+--
+ALTER TABLE `domandechiuse`
+  ADD CONSTRAINT `domandechiuse_ibfk_1` FOREIGN KEY (`IDStudente`) REFERENCES `user` (`ID`),
+  ADD CONSTRAINT `domandechiuse_ibfk_2` FOREIGN KEY (`IDProfessore`) REFERENCES `admin` (`ID`);
 
 --
 -- Limiti per la tabella `professoreclasse`
