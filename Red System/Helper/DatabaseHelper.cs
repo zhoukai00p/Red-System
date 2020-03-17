@@ -63,7 +63,7 @@ namespace Red_System.Helper
                 }
                 return classe;
         }
-        public static Classi InsertDomandeChiuse(Classi classe)
+        public static DomandeChiuse InsertDomandeChiuse(DomandeChiuse domande)
         {
             try
             {
@@ -79,10 +79,10 @@ namespace Red_System.Helper
                  {*/
                 using (var connection = new MySqlConnection(connectionString))
                 {
-                    var sql = "INSERT INTO DomandeChiuse (ID,Domanda,OpzioneA,OpzioneB,OpzioneC,OpzioneD,OpzioneE)" +
-                        " VALUES (null,@Domanda,@OpzioneA,@OpzioneB,@OpzioneC,@OpzioneD,@OpzioneE); " +
+                    var sql = "INSERT INTO DomandeChiuse (ID,Domanda,OpzioneA,OpzioneB,OpzioneC,OpzioneD,OpzioneE,IDStudente,IDProfessore)" +
+                        " VALUES (null,@Domanda,@OpzioneA,@OpzioneB,@OpzioneC,@OpzioneD,@OpzioneE,null,null); " +
                         " SELECT CAST(LAST_INSERT_ID() as int ) ";
-                    classe.ID = connection.Query<int>(sql, classe).FirstOrDefault();
+                    domande.ID = connection.Query<int>(sql, domande).FirstOrDefault();
                 }
             }
             //}
@@ -99,7 +99,7 @@ namespace Red_System.Helper
                 //errore
                 return null;
             }
-            return classe;
+            return domande;
         }
 
         public static List<Classi> GetAllClassi()
@@ -118,7 +118,7 @@ namespace Red_System.Helper
             var ListaDomandeChiuse = new List<DomandeChiuse>();
             using (var connection = new MySqlConnection(connectionString))
             {
-                var sql = "select * from Classi";
+                var sql = "select * from DomandeChiuse";
                 ListaDomandeChiuse = connection.Query<DomandeChiuse>(sql).ToList();
             }
             return ListaDomandeChiuse;

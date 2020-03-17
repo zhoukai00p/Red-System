@@ -18,7 +18,7 @@ namespace Red_System.Models
         public string LabelButtonSend { get; set; }
         public string ErrorMessage { get; set; }
         public Admin Professore { get; internal set; }
-        public List<DomandeChiuse> DomandeChiuse { get; set; }
+        public DomandeChiuse DomandaChiusa { get; set; }
 
         public Classi Classe { get; set; }
     }
