@@ -2,16 +2,24 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Red System</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
 </head>
 <body>
-    <div>
-        <a href="~/Reserved/HomeProfessore/@(((Red_System.Models.Entities.Admin)Session["utenteLoggato"]).ID)"><button>Pagina principale</button></a>
-        <a href="~/Reserved/ProfessoreInsertClasse/@(((Red_System.Models.Entities.Admin)Session["utenteLoggato"]).ID)"><button>Inserisci classe</button></a>
-        <a href="~/Reserved/ProfessoreInsertStudente/@(((Red_System.Models.Entities.Admin)Session["utenteLoggato"]).ID)"><button>Inserisci studente</button></a>
-        <a href="~/Reserved/ProfessoreInsertVerifica/@(((Red_System.Models.Entities.Admin)Session["utenteLoggato"]).ID)"><button>Inserisci verifica</button></a>
+     <div align="center">
+        <a href="~/Reserved/HomeProfessore/@(((Red_System.Models.Entities.Admin)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger" style="margin-left:100px">Pagina principale</button></a>
+        <a href="~/Reserved/ProfessoreInsertClasse/@(((Red_System.Models.Entities.Admin)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger" style="margin-left:100px">Inserisci classe</button></a>
+        <a href="~/Reserved/ProfessoreInsertStudente/@(((Red_System.Models.Entities.Admin)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger" style="margin-left:100px">Inserisci studente</button></a>
+        <a href="~/Reserved/ProfessoreInsertVerifica/@(((Red_System.Models.Entities.Admin)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger" style="margin-left:100px">Inserisci verifica</button></a>
+         </div>
+    <br />
+    <br />
+
         @RenderBody()
-    </div>
+
 </body>
 </html>
