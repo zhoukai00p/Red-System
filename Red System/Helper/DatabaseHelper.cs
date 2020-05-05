@@ -63,6 +63,47 @@ namespace Red_System.Helper
                 }
                 return classe;
         }
+
+        public static User InsertStudente(User studente, int classeid)
+        {
+            try
+            {
+                /* var cerca = "SELECT C.Numero,C.Sezione FROM Classi C WHERE Numero=@Numero AND Sezione=@Sezione";
+                 var controlla = new Classi();
+
+                 using (var connection = new MySqlConnection(connectionString))
+                 {
+                     controlla = connection.Query<Classi>(cerca, classe).FirstOrDefault();
+                 }
+
+                 if(controlla != null )
+                 {*/
+                studente.IDClasse = classeid;
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    var sql = "INSERT INTO STUDENTE (ID,Nome,Cognome,IDClasse)" +
+                        " VALUES (null,@Nome,@Cognome,@IDClasse); " +
+                        " SELECT CAST(LAST_INSERT_ID() as int ) ";
+                    studente.ID = connection.Query<int>(sql, studente).FirstOrDefault();
+                }
+            }
+            //}
+            /*
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    var sql = "INSERT INTO ProfessoreClasse (ID, IDClasse)"+
+                    "VALUES (null,@ID);"+
+                    "SELECT CAST(LAST_INSERT_ID() as int )"
+                }
+                */
+            catch (Exception ex)
+            {
+                //errore
+                return null;
+            }
+            return studente;
+        }
+
         public static DomandeChiuse InsertDomandeChiuse(DomandeChiuse domande)
         {
             try

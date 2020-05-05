@@ -268,6 +268,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\DatabaseHelper.cs" />
+    <Compile Include="Helper\Helper.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Entities\Admin.cs" />
     <Compile Include="Models\Entities\Classi.cs" />
@@ -279,6 +280,7 @@
     <Compile Include="Models\ProfessoreInsertStudenteModel.cs" />
     <Compile Include="Models\ProfessoreInsertVerificaModel.cs" />
     <Compile Include="Models\ProfiloProfessoreModel.cs" />
+    <Compile Include="Models\VerificaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -291,6 +293,8 @@
     <Content Include="Views\Home\LoginProfessore.cshtml" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Views\Shared\_LayoutVerifica.cshtml" />
+    <Content Include="Views\Reserved\Verifica.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

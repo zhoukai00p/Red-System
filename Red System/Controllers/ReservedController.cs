@@ -95,6 +95,8 @@ namespace Red_System.Controllers
             }
             ProfessoreInsertStudenteLabel(model);
             model.Classe = DatabaseHelper.GetAllClassi();
+            model.listaClassi = Helper.Helper.PrendiClassi(model.Classe);
+            ViewBag.Classe = Helper.Helper.PrendiClassi(model.Classe);
             return View(model);
         }
 
@@ -113,7 +115,10 @@ namespace Red_System.Controllers
         public ActionResult ProfessoreInsertStudente(int id, ProfessoreInsertStudenteModel model)
         {
             ProfessoreInsertStudenteLabel(model);
-            //DatabaseHelper.InsertClasse(model.Classe);
+
+            System.Diagnostics.Debug.WriteLine("DIOPORCO3: " + Convert.ToInt32(model.listaClassi));
+
+            //DatabaseHelper.InsertStudente(model.Studente,model.StudenteClasseId);
             return View(model);
         }
 
@@ -160,6 +165,21 @@ namespace Red_System.Controllers
             return View(model);
         }
 
+        [HttpGet]
 
+        public ActionResult Verifica()
+        {
+            var model = new VerificaModel();
+            model.Title = "Verifica";
+            model.Text = "<strong>Bold</strong> normal";
+            model.LabelDomanda = "Domanda";
+            model.LabelOpzioneA = "A";
+            model.LabelOpzioneB = "B";
+            model.LabelOpzioneC = "C";
+            model.LabelOpzioneD = "D";
+            model.LabelOpzioneE = "E";
+            model.DomandaChiusa = DatabaseHelper.GetAllDomandeChiuse();
+            return View(model);
+        }
     }
 }
