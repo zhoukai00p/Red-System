@@ -20,7 +20,6 @@ namespace Red_System.Models
         public string ErrorMessage { get; set; }
         public Professore Professore { get; internal set; }
         public DomandaChiusa DomandaChiusa { get; set; }
-
         public Classi Classe { get; set; }
     }
 }

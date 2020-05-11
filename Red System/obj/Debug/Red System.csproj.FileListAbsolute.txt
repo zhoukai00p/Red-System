@@ -303,3 +303,4 @@ C:\Users\Teodo\Desktop\PROJECTWORK\Red-System\Red System\bin\roslyn\vbc.exe.conf
 C:\Users\Teodo\Desktop\PROJECTWORK\Red-System\Red System\bin\roslyn\vbc.rsp
 C:\Users\Teodo\Desktop\PROJECTWORK\Red-System\Red System\bin\roslyn\VBCSCompiler.exe
 C:\Users\Teodo\Desktop\PROJECTWORK\Red-System\Red System\bin\roslyn\VBCSCompiler.exe.config
+D:\NET\x\Red System\Red-System\Red System\obj\Debug\Red System.csprojAssemblyReference.cache
