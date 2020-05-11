@@ -15,7 +15,7 @@ namespace Red_System.Models
 
         public Classi Classe { get; set; }
 
-        public Admin Professore { get; internal set; }
+        public Professore Professore { get; internal set; }
         public string ErrorNumeroMessage { get; set; }
         public string ErrorSezioneMessage { get; set; }
         public string ErrorMessage { get; set; }

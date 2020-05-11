@@ -8,6 +8,6 @@ namespace Red_System.Models
 {
     public class ProfiloProfessoreModel : BaseModel
     {
-        public Admin Professore { get; internal set; }
+        public Professore Professore { get; internal set; }
     }
 }

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Red_System.Models.Entities
 {
-    public class User
+    public class Studente
     {
         public int ID { get; set; }
         public string Nome { get; set; }

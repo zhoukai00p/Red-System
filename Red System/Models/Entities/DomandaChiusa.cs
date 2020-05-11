@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Red_System.Models.Entities
 {
-    public class DomandeChiuse
+    public class DomandaChiusa
     {
         public int ID { get; set; }
         public string Domanda { get; set; }
@@ -14,11 +14,6 @@ namespace Red_System.Models.Entities
         public string OpzioneC { get; set; }
         public string OpzioneD { get; set; }
         public string OpzioneE { get; set; }
-        public bool RispStudenteA { get; set; }
-        public bool RispStudenteB { get; set; }
-        public bool RispStudenteC { get; set; }
-        public bool RispStudenteD { get; set; }
-        public bool RispStudenteE { get; set; }
         public bool RispGiustaA { get; set; }
         public bool RispGiustaB { get; set; }
         public bool RispGiustaC { get; set; }

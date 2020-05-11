@@ -14,13 +14,13 @@ namespace Red_System.Helper
     {
         private static readonly string connectionString = ConfigurationManager.ConnectionStrings["Database"].ConnectionString;
 
-        public static Admin Login(string Username, string Password)
+        public static Professore Login(string Username, string Password)
         {
-            var Professore = new Admin();
+            var Professore = new Professore();
             using (var connection = new MySqlConnection(connectionString))
             {
-                var sql = "select * from Admin where Username = @Username and Password=@Password";
-                Professore = connection.Query<Admin>(sql, new { Username, Password }).FirstOrDefault();
+                var sql = "select * from Professore where Username = @Username and Password=@Password";
+                Professore = connection.Query<Professore>(sql, new { Username, Password }).FirstOrDefault();
             }
             return Professore;
         }
@@ -41,7 +41,7 @@ namespace Red_System.Helper
                 {*/
                         using (var connection = new MySqlConnection(connectionString))
                         {
-                            var sql = "INSERT INTO Classi (ID,Numero,Sezione,Indirizzo)" +
+                            var sql = "INSERT INTO Classe (ID,Numero,Sezione,Indirizzo)" +
                                 " VALUES (null,@Numero,@Sezione,@Indirizzo); " +
                                 " SELECT CAST(LAST_INSERT_ID() as int ) ";
                             classe.ID = connection.Query<int>(sql, classe).FirstOrDefault();
@@ -64,7 +64,7 @@ namespace Red_System.Helper
                 return classe;
         }
 
-        public static User InsertStudente(User studente, int classeid)
+        public static Studente InsertStudente(Studente studente, int classeid)
         {
             try
             {
@@ -104,7 +104,7 @@ namespace Red_System.Helper
             return studente;
         }
 
-        public static DomandeChiuse InsertDomandeChiuse(DomandeChiuse domande)
+        public static DomandaChiusa InsertDomandeChiuse(DomandaChiusa domande)
         {
             try
             {
@@ -120,7 +120,7 @@ namespace Red_System.Helper
                  {*/
                 using (var connection = new MySqlConnection(connectionString))
                 {
-                    var sql = "INSERT INTO DomandeChiuse (ID,Domanda,OpzioneA,OpzioneB,OpzioneC,OpzioneD,OpzioneE,IDStudente,IDProfessore)" +
+                    var sql = "INSERT INTO DomandaChiusa (ID,Domanda,OpzioneA,OpzioneB,OpzioneC,OpzioneD,OpzioneE,IDStudente,IDProfessore)" +
                         " VALUES (null,@Domanda,@OpzioneA,@OpzioneB,@OpzioneC,@OpzioneD,@OpzioneE,null,null); " +
                         " SELECT CAST(LAST_INSERT_ID() as int ) ";
                     domande.ID = connection.Query<int>(sql, domande).FirstOrDefault();
@@ -143,26 +143,47 @@ namespace Red_System.Helper
             return domande;
         }
 
+        public static Verifica InsertVerifica(Verifica verifica)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    var sql = "INSERT INTO Verifica (ID,Nome,Descrizione,IDProfessore)" +
+                        " VALUES (null,@Nome,@Descrizione,@IDProfessore); " +
+                        " SELECT CAST(LAST_INSERT_ID() as int ) ";
+                    verifica.ID = connection.Query<int>(sql, verifica).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                //errore
+                return null;
+            }
+            return verifica;
+        }
+
         public static List<Classi> GetAllClassi()
         {
             var ListaClasse = new List<Classi>();
             using (var connection = new MySqlConnection(connectionString))
             {
-                var sql = "select * from Classi";
+                var sql = "select * from Classe";
                 ListaClasse = connection.Query<Classi>(sql).ToList();
             }
             return ListaClasse;
         }
 
-        public static List<DomandeChiuse> GetAllDomandeChiuse()
+        public static List<DomandaChiusa> GetAllDomandeChiuse()
         {
-            var ListaDomandeChiuse = new List<DomandeChiuse>();
+            var ListaDomandeChiuse = new List<DomandaChiusa>();
             using (var connection = new MySqlConnection(connectionString))
             {
-                var sql = "select * from DomandeChiuse";
-                ListaDomandeChiuse = connection.Query<DomandeChiuse>(sql).ToList();
+                var sql = "select * from DomandaChiusa";
+                ListaDomandeChiuse = connection.Query<DomandaChiusa>(sql).ToList();
             }
             return ListaDomandeChiuse;
         }
+
     }
 }

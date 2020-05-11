@@ -198,7 +198,6 @@ D:\NET\x\Red System\Red-System\Red System\bin\it\System.Web.Mvc.resources.dll
 D:\NET\x\Red System\Red-System\Red System\bin\it\System.Net.Http.Formatting.resources.dll
 D:\NET\x\Red System\Red-System\Red System\bin\it\System.Web.Http.resources.dll
 D:\NET\x\Red System\Red-System\Red System\bin\it\System.Web.Http.WebHost.resources.dll
-D:\NET\x\Red System\Red-System\Red System\obj\Debug\Red System.csprojAssemblyReference.cache
 D:\NET\x\Red System\Red-System\Red System\obj\Debug\Red System.csproj.CopyComplete
 D:\NET\x\Red System\Red-System\Red System\obj\Debug\Red System.dll
 D:\NET\x\Red System\Red-System\Red System\obj\Debug\Red System.pdb

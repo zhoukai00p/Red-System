@@ -9,15 +9,16 @@ namespace Red_System.Helper
 {
     public class Helper
     {
-        public static List<SelectListItem> PrendiClassi(List<Classi> classi)
+        public static List<SelectListItem> PrendiClassi()
         {
+            List<Classi> classi = DatabaseHelper.GetAllClassi();
             List<SelectListItem> listItems = new List<SelectListItem>();
             for(int i=0; i<classi.Count; i++)
             {
                 listItems.Add(new SelectListItem
                 {
 
-                    Text = classi[i].Numero + " " + classi[i].Sezione + " " + classi[i].Indirizzo + " " + classi[i].ID,
+                    Text = classi[i].Numero + classi[i].Sezione.ToString() + " " + classi[i].Indirizzo,
                     Value = classi[i].ID.ToString()
                 }) ;
             }
