@@ -13,13 +13,11 @@ namespace Red_System.Models
         public string LabelCognome { get; set; }
         public string LabelClasse { get; set; }
         public string LabelButtonSend { get; set; }
-
         public List<Classi> Classe { get; set; }
-
-        public List<SelectListItem> listaClassi { get; set; }
+        public List<SelectListItem> ListaClassi { get; set; }
         public Studente Studente { get; set; }
         public int StudenteClasseId { get; set; }
-        public string listaClassiSelectedValue { get; set; }
+        public string ListaClassiSelectedValue { get; set; }
         public Professore Professore { get; internal set; }
         public string ErrorNomeMessage { get; set; }
         public string ErrorCognomeMessage { get; set; }

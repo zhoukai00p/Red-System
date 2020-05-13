@@ -1,5 +1,39 @@
-﻿@{
+﻿@using Red_System.Models.Entities;
+@model Red_System.Models.ProfessoreSelezionaVerificaModel
+
+@{
     Layout = "~/Views/Shared/_LayoutProfessore.cshtml";
 }
 
 
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+
+        @using (Html.BeginForm("ProfessoreSelezionaVerifica", "Reserved", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="row">
+                <div class="col-md-offset-2 col-md-4">
+                    <div class="form-group">
+                        @Html.DropDownListFor(t => t.VerificaSelectedValue, Model.ListaSelectVerifica, "Seleziona la classe")
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-4 col-md-4">
+                    <input type="submit" value="@Model.LabelButtonSend" class="btn btn-primary" />
+                </div>
+            </div>
+            if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+            {
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-4">
+                        <p class="field-validation-error">@Html.Raw(Model.ErrorMessage) </p>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>

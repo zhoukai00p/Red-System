@@ -299,6 +299,7 @@
     <Content Include="Views\Shared\_LayoutVerifica.cshtml" />
     <Content Include="Views\Reserved\Verifica.cshtml" />
     <Content Include="Views\Reserved\ProfessoreInsertDomanda.cshtml" />
+    <Content Include="Views\Reserved\ProfessoreSelezionaVerifica.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

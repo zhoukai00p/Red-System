@@ -7,6 +7,7 @@ using MySql.Data.MySqlClient;
 using Dapper;
 using Red_System.Models;
 using Red_System.Models.Entities;
+using System.Diagnostics;
 
 namespace Red_System.Helper
 {
@@ -29,33 +30,15 @@ namespace Red_System.Helper
         {
             try
             {
-               /* var cerca = "SELECT C.Numero,C.Sezione FROM Classi C WHERE Numero=@Numero AND Sezione=@Sezione";
-                var controlla = new Classi();
 
                 using (var connection = new MySqlConnection(connectionString))
                 {
-                    controlla = connection.Query<Classi>(cerca, classe).FirstOrDefault();
+                    var sql = "INSERT INTO Classe (ID,Numero,Sezione,Indirizzo)" +
+                        " VALUES (null,@Numero,@Sezione,@Indirizzo); " +
+                        " SELECT CAST(LAST_INSERT_ID() as int ) ";
+                    classe.ID = connection.Query<int>(sql, classe).FirstOrDefault();
                 }
-
-                if(controlla != null )
-                {*/
-                        using (var connection = new MySqlConnection(connectionString))
-                        {
-                            var sql = "INSERT INTO Classe (ID,Numero,Sezione,Indirizzo)" +
-                                " VALUES (null,@Numero,@Sezione,@Indirizzo); " +
-                                " SELECT CAST(LAST_INSERT_ID() as int ) ";
-                            classe.ID = connection.Query<int>(sql, classe).FirstOrDefault();
-                        }
-                    }
-                //}
-            /*
-                using (var connection = new MySqlConnection(connectionString))
-                {
-                    var sql = "INSERT INTO ProfessoreClasse (ID, IDClasse)"+
-                    "VALUES (null,@ID);"+
-                    "SELECT CAST(LAST_INSERT_ID() as int )"
-                }
-                */
+            }
                 catch (Exception ex)
                 {
                     //errore
@@ -68,16 +51,6 @@ namespace Red_System.Helper
         {
             try
             {
-                /* var cerca = "SELECT C.Numero,C.Sezione FROM Classi C WHERE Numero=@Numero AND Sezione=@Sezione";
-                 var controlla = new Classi();
-
-                 using (var connection = new MySqlConnection(connectionString))
-                 {
-                     controlla = connection.Query<Classi>(cerca, classe).FirstOrDefault();
-                 }
-
-                 if(controlla != null )
-                 {*/
                 studente.IDClasse = classeid;
                 using (var connection = new MySqlConnection(connectionString))
                 {
@@ -87,15 +60,6 @@ namespace Red_System.Helper
                     studente.ID = connection.Query<int>(sql, studente).FirstOrDefault();
                 }
             }
-            //}
-            /*
-                using (var connection = new MySqlConnection(connectionString))
-                {
-                    var sql = "INSERT INTO ProfessoreClasse (ID, IDClasse)"+
-                    "VALUES (null,@ID);"+
-                    "SELECT CAST(LAST_INSERT_ID() as int )"
-                }
-                */
             catch (Exception ex)
             {
                 //errore
@@ -104,40 +68,23 @@ namespace Red_System.Helper
             return studente;
         }
 
-        public static DomandaChiusa InsertDomandeChiuse(DomandaChiusa domande)
+        public static DomandaChiusa InsertDomandeChiuse(DomandaChiusa domande,int IDVerifica)
         {
             try
             {
-                /* var cerca = "SELECT C.Numero,C.Sezione FROM Classi C WHERE Numero=@Numero AND Sezione=@Sezione";
-                 var controlla = new Classi();
-
-                 using (var connection = new MySqlConnection(connectionString))
-                 {
-                     controlla = connection.Query<Classi>(cerca, classe).FirstOrDefault();
-                 }
-
-                 if(controlla != null )
-                 {*/
                 using (var connection = new MySqlConnection(connectionString))
                 {
-                    var sql = "INSERT INTO DomandaChiusa (ID,Domanda,OpzioneA,OpzioneB,OpzioneC,OpzioneD,OpzioneE,IDStudente,IDProfessore)" +
-                        " VALUES (null,@Domanda,@OpzioneA,@OpzioneB,@OpzioneC,@OpzioneD,@OpzioneE,null,null); " +
+                    domande.IDVerifica = IDVerifica;
+                    var sql = "INSERT INTO DomandaChiusa (ID,Domanda,OpzioneA,OpzioneB,OpzioneC,OpzioneD,OpzioneE,RispGiustaA,RispGiustaB,RispGiustaC,RispGiustaD,RispGiustaE,Punteggio,IDVerifica)" +
+                        " VALUES (null,@Domanda,@OpzioneA,@OpzioneB,@OpzioneC,@OpzioneD,@OpzioneE,@RispGiustaA,@RispGiustaB,@RispGiustaC,@RispGiustaD,@RispGiustaE,@Punteggio,@IDVerifica); " +
                         " SELECT CAST(LAST_INSERT_ID() as int ) ";
                     domande.ID = connection.Query<int>(sql, domande).FirstOrDefault();
                 }
             }
-            //}
-            /*
-                using (var connection = new MySqlConnection(connectionString))
-                {
-                    var sql = "INSERT INTO ProfessoreClasse (ID, IDClasse)"+
-                    "VALUES (null,@ID);"+
-                    "SELECT CAST(LAST_INSERT_ID() as int )"
-                }
-                */
             catch (Exception ex)
             {
                 //errore
+                Debug.WriteLine(ex.Message);
                 return null;
             }
             return domande;
@@ -163,7 +110,7 @@ namespace Red_System.Helper
             return verifica;
         }
 
-        public static List<Classi> GetAllClassi()
+        public static List<Classi> GetAllClasse()
         {
             var ListaClasse = new List<Classi>();
             using (var connection = new MySqlConnection(connectionString))
@@ -174,15 +121,46 @@ namespace Red_System.Helper
             return ListaClasse;
         }
 
-        public static List<DomandaChiusa> GetAllDomandeChiuse()
+        public static List<Verifica> GetAllVerifica()
         {
-            var ListaDomandeChiuse = new List<DomandaChiusa>();
+            var ListaVerifiche = new List<Verifica>();
             using (var connection = new MySqlConnection(connectionString))
             {
-                var sql = "select * from DomandaChiusa";
-                ListaDomandeChiuse = connection.Query<DomandaChiusa>(sql).ToList();
+                var sql = "select * from Verifica";
+                ListaVerifiche = connection.Query<Verifica>(sql).ToList();
             }
-            return ListaDomandeChiuse;
+            return ListaVerifiche;
+        }
+
+        public static List<DomandaChiusa> GetAllDomandaChiusaByVerifica(int idverifica)
+        {
+            var listaDomandaChiusa = new List<DomandaChiusa>();
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    var sql = "select * from domandachiusa where idverifica = @idverifica";
+                    listaDomandaChiusa = connection.Query<DomandaChiusa>(sql, new { idverifica }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                throw;
+            }
+
+            return listaDomandaChiusa;
+        }
+
+        public static Verifica GetVerificaById(int id)
+        {
+            var verifica = new Verifica();
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                var sql = "select * from Verifica where id = @id";
+                verifica = connection.Query<Verifica>(sql, new { id }).FirstOrDefault();
+            }
+            return verifica;
         }
 
     }

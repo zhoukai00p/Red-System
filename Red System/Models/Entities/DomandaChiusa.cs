@@ -19,8 +19,7 @@ namespace Red_System.Models.Entities
         public bool RispGiustaC { get; set; }
         public bool RispGiustaD { get; set; }
         public bool RispGiustaE { get; set; }
-        public int IDStudente { get; set; }
-        public int IDProfessore { get; set; }
+        public float Punteggio { get; set; }
         public int IDVerifica { get; set; }
     }
 }

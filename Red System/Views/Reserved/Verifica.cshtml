@@ -12,21 +12,21 @@
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
 
-            for (int i = 0; i < Model.DomandaChiusa.Count; i++)
+            foreach (var item in Model.ListaDomandaChiusa)
             {
 
                 <div class="row">
                     <div class="col-md-offset-2 col-md-4">
                         <div class="form-group">
                             <label for="Name">@Model.LabelDomanda</label>
-                            <p>@(Model.DomandaChiusa[i].Domanda) </p>
+                            <p>@(item.Domanda) </p>
                         </div>
                     </div>
                     <div class="col-md-offset-2 col-md-4">
                         <div class="form-group">
                             <label for="Name">@Model.LabelOpzioneA</label>
-                            <p>@(Model.DomandaChiusa[i].OpzioneA) </p>
-                            @Html.CheckBoxFor(t => Model.DomandaChiusa[i].RispStudenteA)
+                            <p>@(item.OpzioneA) </p>
+                            @Html.CheckBoxFor(t => item.RispStudenteA)
                         </div>
                     </div>
                 </div>
@@ -34,15 +34,15 @@
                     <div class="col-md-offset-2 col-md-4">
                         <div class="form-group">
                             <label for="Name">@Model.LabelOpzioneB</label>
-                            <p>@(Model.DomandaChiusa[i].OpzioneB) </p>
-                            @Html.CheckBoxFor(t => Model.DomandaChiusa[i].RispStudenteB)
+                            <p>@(item.OpzioneB) </p>
+                            @Html.CheckBoxFor(t => item.RispStudenteB)
                         </div>
                     </div>
                     <div class="col-md-offset-2 col-md-4">
                         <div class="form-group">
                             <label for="Name">@Model.LabelOpzioneC</label>
-                            <p>@(Model.DomandaChiusa[i].OpzioneC) </p>
-                            @Html.CheckBoxFor(t => Model.DomandaChiusa[i].RispStudenteC)
+                            <p>@(item.OpzioneC) </p>
+                            @Html.CheckBoxFor(t => item.RispStudenteC)
                         </div>
                     </div>
                 </div>
@@ -50,15 +50,15 @@
                     <div class="col-md-offset-2 col-md-4">
                         <div class="form-group">
                             <label for="Name">@Model.LabelOpzioneD</label>
-                            <p>@(Model.DomandaChiusa[i].OpzioneD) </p>
-                            @Html.CheckBoxFor(t => Model.DomandaChiusa[i].RispStudenteD)
+                            <p>@(item.OpzioneD) </p>
+                            @Html.CheckBoxFor(t => item.RispStudenteD)
                         </div>
                     </div>
                     <div class="col-md-offset-2 col-md-4">
                         <div class="form-group">
                             <label for="Name">@Model.LabelOpzioneE</label>
-                            <p>@(Model.DomandaChiusa[i].OpzioneE) </p>
-                            @Html.CheckBoxFor(t => Model.DomandaChiusa[i].RispStudenteE)
+                            <p>@(item.OpzioneE) </p>
+                            @Html.CheckBoxFor(t => item.RispStudenteE)
                         </div>
                     </div>
                 </div>
