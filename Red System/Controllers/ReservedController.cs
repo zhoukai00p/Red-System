@@ -12,8 +12,8 @@ namespace Red_System.Controllers
     public class ReservedController : Controller
     {
         // GET: ReservedProfessore
-       [HttpGet]
-       public ActionResult HomeProfessore(int id)
+        [HttpGet]
+        public ActionResult HomeProfessore(int id)
         {
             var utenteLoggato = Session["utenteLoggato"];
             if (utenteLoggato == null)
@@ -25,9 +25,10 @@ namespace Red_System.Controllers
             model.Title = "Red system";
             model.Text = "<strong>Bold</strong> normal";
             model.Professore = (Professore)utenteLoggato;
+
             if (model.Professore.ID != id)
             {
-                return RedirectToAction("HomeProfessore", "Reserved", new { model.Professore.ID});
+                return RedirectToAction("HomeProfessore", "Reserved", new { model.Professore.ID });
             }
 
             return View(model);
@@ -41,7 +42,6 @@ namespace Red_System.Controllers
             {
                 return RedirectToAction("LoginProfessore", "Home");
             }
-
 
             var model = new ProfessoreInsertClasseModel();
 
@@ -67,7 +67,7 @@ namespace Red_System.Controllers
         }
 
         [HttpPost]
-        public ActionResult ProfessoreInsertClasse(int id,ProfessoreInsertClasseModel model)
+        public ActionResult ProfessoreInsertClasse(int id, ProfessoreInsertClasseModel model)
         {
             ProfessoreInsertClasseLabel(model);
             char x = Char.ToUpper(model.Classe.Sezione);
@@ -86,7 +86,6 @@ namespace Red_System.Controllers
                 return RedirectToAction("LoginProfessore", "Home");
             }
 
-
             var model = new ProfessoreInsertStudenteModel();
 
             model.Professore = (Professore)utenteLoggato;
@@ -94,6 +93,7 @@ namespace Red_System.Controllers
             {
                 return RedirectToAction("HomeProfessore", "Reserved", new { model.Professore.ID });
             }
+
             ProfessoreInsertStudenteLabel(model);
             model.Classe = DatabaseHelper.GetAllClasse();
             model.ListaClassi = Helper.Helper.PrendiClasse();
@@ -123,8 +123,8 @@ namespace Red_System.Controllers
             model.StudenteClasseId = Convert.ToInt32(x.Value);
 
             //model.StudenteClasseId = Convert.ToInt32(model.listaClassiSelectedValue);
-            DatabaseHelper.InsertStudente(model.Studente,model.StudenteClasseId);
-            
+            DatabaseHelper.InsertStudente(model.Studente, model.StudenteClasseId);
+
             return View(model);
         }
 
@@ -137,14 +137,14 @@ namespace Red_System.Controllers
                 return RedirectToAction("LoginProfessore", "Home");
             }
 
-
             var model = new ProfessoreInsertDomandaModel();
-
             model.Professore = (Professore)utenteLoggato;
+
             if (model.Professore.ID != id)
             {
                 return RedirectToAction("HomeProfessore", "Reserved", new { model.Professore.ID });
             }
+
             ProfessoreInsertDomandaLabel(model);
             var IDVerifica = Session["VerificaSelezionato"];
             model.Verifica = (Verifica)IDVerifica;
@@ -171,16 +171,16 @@ namespace Red_System.Controllers
         public ActionResult ProfessoreInsertDomanda(int id, ProfessoreInsertDomandaModel model)
         {
             ProfessoreInsertDomandaLabel(model);
-            
+
             var IDVerifica = Session["VerificaSelezionato"];
             model.Verifica = (Verifica)IDVerifica;
             model.ListaDomandaChiusa = DatabaseHelper.GetAllDomandaChiusaByVerifica(model.Verifica.ID);
-            if(model.ListaDomandaChiusa != null)
+            if (model.ListaDomandaChiusa != null)
             {
                 DatabaseHelper.InsertDomandeChiuse(model.DomandaChiusa, model.Verifica.ID);
                 return RedirectToAction("ProfessoreInsertDomanda", "Reserved", new { model.Professore.ID });
             }
-           
+
             return View(model);
         }
 
@@ -225,7 +225,7 @@ namespace Red_System.Controllers
             Session["VerificaSelezionato"] = model.Verifica;
             var utenteLoggato = Session["utenteLoggato"];
             model.Professore = (Professore)utenteLoggato;
-            if (model.Verifica!=null)
+            if (model.Verifica != null)
             {
                 return RedirectToAction("ProfessoreInsertDomanda", "Reserved", new { model.Professore.ID });
             }
@@ -301,13 +301,10 @@ namespace Red_System.Controllers
             model.LabelOpzioneD = "D";
             model.LabelOpzioneE = "E";
 
-
             var IDVerifica = Session["VerificaSelezionato"];
             model.Verifica = (Verifica)IDVerifica;
             model.ListaDomandaChiusa = DatabaseHelper.GetAllDomandaChiusaByVerifica(model.Verifica.ID);
             return View(model);
         }
-
-
     }
 }
