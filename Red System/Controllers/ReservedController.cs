@@ -175,6 +175,8 @@ namespace Red_System.Controllers
             var IDVerifica = Session["VerificaSelezionato"];
             model.Verifica = (Verifica)IDVerifica;
             model.ListaDomandaChiusa = DatabaseHelper.GetAllDomandaChiusaByVerifica(model.Verifica.ID);
+            var utenteLoggato = Session["utenteLoggato"];
+            model.Professore = (Professore)utenteLoggato;
             if (model.ListaDomandaChiusa != null)
             {
                 DatabaseHelper.InsertDomandeChiuse(model.DomandaChiusa, model.Verifica.ID);
@@ -265,6 +267,8 @@ namespace Red_System.Controllers
             model.LabelButtonSend = "Invia";
         }
 
+
+        [HttpPost]
         public ActionResult ProfessoreSelezionaVerifica(int id, ProfessoreSelezionaVerificaModel model)
         {
             ProfessoreSelezionaVerificaLabel(model);
@@ -306,5 +310,102 @@ namespace Red_System.Controllers
             model.ListaDomandaChiusa = DatabaseHelper.GetAllDomandaChiusaByVerifica(model.Verifica.ID);
             return View(model);
         }
+
+        public static void ProfessoreAssegnaVerificaLabel(ProfessoreAssegnaVerificaModel model)
+        {
+            model.Title = "Red system";
+            model.Text = "<strong>Bold</strong> normal";
+
+            model.LabelClasse = "Classe";
+            model.LabelVerifica = "Verifica";
+            model.LabelSend = "Invia";
+        }
+
+        [HttpGet]
+        public ActionResult ProfessoreAssegnaVerifica(int id)
+        {
+            var utenteLoggato = Session["utenteLoggato"];
+            if (utenteLoggato == null)
+            {
+                return RedirectToAction("LoginProfessore", "Home");
+            }
+
+
+            var model = new ProfessoreAssegnaVerificaModel();
+
+            model.Professore = (Professore)utenteLoggato;
+            if (model.Professore.ID != id)
+            {
+                return RedirectToAction("HomeProfessore", "Reserved", new { model.Professore.ID });
+            }
+            ProfessoreAssegnaVerificaLabel(model);
+            model.ListaSelectVerifica = Helper.Helper.PrendiVerifica();
+            model.ListaSelectClasse = Helper.Helper.PrendiClasse();
+            //model.DomandeChiuse = DatabaseHelper.GetAllDomandeChiuse();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult ProfessereAssegnaVerifica(int id, ProfessoreAssegnaVerificaModel model)
+        {
+            ProfessoreAssegnaVerificaLabel(model);
+
+            model.ListaVerifiche = DatabaseHelper.GetAllVerifica();
+            model.ListaSelectVerifica = Helper.Helper.PrendiVerifica();
+            SelectListItem x = model.ListaSelectVerifica.Where(t => t.Value == model.VerificaSelectedValue).FirstOrDefault();
+            model.VerificaID = Convert.ToInt32(x.Value);
+
+
+            model.ListaClassi = DatabaseHelper.GetAllClasse();
+            model.ListaSelectClasse = Helper.Helper.PrendiClasse();
+            SelectListItem y = model.ListaSelectClasse.Where(t => t.Value == model.ClasseSelectedValue).FirstOrDefault();
+            model.ClasseID = Convert.ToInt32(y.Value);
+
+            Verifica verifica;
+            verifica = DatabaseHelper.GetVerificaById(model.VerificaID);
+
+            Classi classe;
+            classe = DatabaseHelper.GetClasseById(model.ClasseID);
+
+            var utenteLoggato = Session["utenteLoggato"];
+            model.Professore = (Professore)utenteLoggato;
+            Session["VerificaSelezionato"] = verifica;
+            Session["ClasseSelezionata"] = classe;
+            if (verifica != null)
+            {
+                return RedirectToAction("ProfessoreAssegnaVerifica", "Reserved", new { model.Professore.ID });
+            }
+            return View(model);
+        }
+
+        [HttpGet]
+        public static void ProfessoreConfermaAssegnaVerificaLabel(ProfessoreConfermaAssegnaVerificaModel model)
+        {
+            model.Title = "Red system";
+            model.Text = "<strong>Bold</strong> normal";
+            model.LabelSend = "Invia";
+        }
+
+        public ActionResult ProfessoreConfermaAssegnaVerifica(int id)
+        {
+            var utenteLoggato = Session["utenteLoggato"];
+            if (utenteLoggato == null)
+            {
+                return RedirectToAction("LoginProfessore", "Home");
+            }
+
+
+            var model = new ProfessoreConfermaAssegnaVerificaModel();
+
+            model.Professore = (Professore)utenteLoggato;
+            if (model.Professore.ID != id)
+            {
+                return RedirectToAction("HomeProfessore", "Reserved", new { model.Professore.ID });
+            }
+            ProfessoreConfermaAssegnaVerificaLabel(model);
+            return View(model);
+        }
+
+
     }
 }

@@ -163,5 +163,38 @@ namespace Red_System.Helper
             return verifica;
         }
 
+        public static Classi GetClasseById(int id)
+        {
+            var classe = new Classi();
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                var sql = "select * from Classe where id=@id";
+                classe = connection.Query<Classi>(sql, new { id }).FirstOrDefault();
+            }
+            return classe;
+        }
+
+        public static List<Studente> GetStudenteByIDClasse(int IDClasse)
+        {
+            var studenti = new List<Studente>();
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    var sql = " select * from studente where idclasse=@idclasse";
+                    studenti = connection.Query<Studente>(sql, new { IDClasse }).ToList();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                throw;
+            }
+            return studenti;
+        }
+
+
+
     }
 }

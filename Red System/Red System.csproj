@@ -270,6 +270,7 @@
     <Compile Include="Helper\DatabaseHelper.cs" />
     <Compile Include="Helper\Helper.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\ProfessoreConfermaAssegnaVerificaModel.cs" />
     <Compile Include="Models\Entities\Professore.cs" />
     <Compile Include="Models\Entities\Classi.cs" />
     <Compile Include="Models\Entities\DomandaChiusa.cs" />
@@ -277,6 +278,7 @@
     <Compile Include="Models\Entities\Verifica.cs" />
     <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Models\LoginProfessoreModel.cs" />
+    <Compile Include="Models\ProfessoreAssegnaVerificaModel.cs" />
     <Compile Include="Models\ProfessoreInsertClasseModel.cs" />
     <Compile Include="Models\ProfessoreInsertDomandaModel.cs" />
     <Compile Include="Models\ProfessoreInsertStudenteModel.cs" />
@@ -300,6 +302,8 @@
     <Content Include="Views\Reserved\Verifica.cshtml" />
     <Content Include="Views\Reserved\ProfessoreInsertDomanda.cshtml" />
     <Content Include="Views\Reserved\ProfessoreSelezionaVerifica.cshtml" />
+    <Content Include="Views\Reserved\ProfessoreAssegnaVerifica.cshtml" />
+    <Content Include="Views\Reserved\ProfessoreConfermaAssegnaVerifica.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
