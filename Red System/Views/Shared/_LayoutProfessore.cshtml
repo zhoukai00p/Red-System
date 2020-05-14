@@ -10,18 +10,18 @@
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 </head>
 <body>
-    <div align="center">
-        <a href="~/Reserved/HomeProfessore/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger" style="margin-left:100px">Pagina principale</button></a>
-        <a href="~/Reserved/ProfessoreInsertClasse/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger" style="margin-left:100px">Inserisci classe</button></a>
-        <a href="~/Reserved/ProfessoreInsertStudente/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger" style="margin-left:100px">Inserisci studente</button></a>
-        <a href="~/Reserved/ProfessoreInsertVerifica/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger" style="margin-left:100px">Inserisci verifica</button></a>
-        <a href="~/Reserved/ProfessoreSelezionaVerifica/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger" style="margin-left:100px">Seleziona verifica</button></a>
-        <a href="~/Reserved/ProfessoreAssegnaVerifica/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger" style="margin-left:100px">Assegna Verifica</button></a>
-    </div>
-    <br />
-    <br />
-
-        @RenderBody()
-
+            <div class="container text-center">
+                <a href="~/Reserved/HomeProfessore/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger">Pagina principale</button></a>
+                <a href="~/Reserved/ProfessoreInsertClasse/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger" >Inserisci classe</button></a>
+                <a href="~/Reserved/ProfessoreInsertStudente/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger" >Inserisci studente</button></a>
+                <a href="~/Reserved/ProfessoreInsertVerifica/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger" >Inserisci verifica</button></a>
+                <a href="~/Reserved/ProfessoreSelezionaVerifica/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger" >Seleziona verifica</button></a>
+                <a href="~/Reserved/ProfessoreAssegnaVerifica/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger">Assegna Verifica</button></a>
+            </div>
+            <br />
+            <br />
+            <div class="text-center center-block">
+            @RenderBody()
+            </div>
 </body>
 </html>

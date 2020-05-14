@@ -5,39 +5,46 @@
 
 
 
-<div class="wrapper fadeInDown">
-    <div id="formContent">
+<div class="wrapper fadeInDown" >
+    <div id="formContent"  >
         @using (Html.BeginForm("ProfessoreInsertClasse", "Reserved", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
 
-            <div class="row">
+            <br />
+            <br />
+
+            <div class="row" style="padding-left:30%">
                 <div class="col-md-offset-2 col-md-4">
                     <div class="form-group">
                         <label for="Name">@Model.LabelNumero</label>
-                        @Html.TextBoxFor(t => t.Classe.Numero, new { @class = "form-control fadeIn second", placeholder = Model.LabelNumero })
+                        @Html.TextBoxFor(t => t.Classe.Numero, new { @class = "form-control fadeIn second center-block  ", placeholder = Model.LabelNumero })
                         @Html.ValidationMessageFor(t => t.Classe.Numero)
                     </div>
                 </div>
-                <div class="col-md-offset-2 col-md-4">
+                <div class="col-md-offset-2 col-md-4 ">
                     <div class="form-group">
                         <label for="Name">@Model.LabelSezione</label>
-                        @Html.TextBoxFor(t => t.Classe.Sezione, new { @class = "form-control fadeIn second", placeholder = Model.LabelSezione })
+                        @Html.TextBoxFor(t => t.Classe.Sezione, new { @class = "form-control fadeIn second center-block", placeholder = Model.LabelSezione })
                         @Html.ValidationMessageFor(t => t.Classe.Sezione)
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <br />
+            <br />
+            <div class="row" style="padding-left:30%">
                 <div class="col-md-offset-2 col-md-4">
                     <div class="form-group">
                         <label for="Name">@Model.LabelIndirizzo</label>
-                        @Html.TextBoxFor(t => t.Classe.Indirizzo, new { @class = "form-control fadeIn second", placeholder = Model.LabelIndirizzo })
+                        @Html.TextBoxFor(t => t.Classe.Indirizzo, new { @class = "form-control fadeIn second center-block", placeholder = Model.LabelIndirizzo })
                         @Html.ValidationMessageFor(t => t.Classe.Indirizzo)
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <br />
+            <br />
+            <div class="row" style="padding-left:40%">
                 <div class="col-md-offset-4 col-md-4">
                     <input type="submit" value="@Model.LabelButtonSend" class="btn btn-primary" />
                 </div>
