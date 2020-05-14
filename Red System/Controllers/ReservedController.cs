@@ -403,6 +403,7 @@ namespace Red_System.Controllers
                 return RedirectToAction("HomeProfessore", "Reserved", new { model.Professore.ID });
             }
             ProfessoreConfermaAssegnaVerificaLabel(model);
+
             return View(model);
         }
 
