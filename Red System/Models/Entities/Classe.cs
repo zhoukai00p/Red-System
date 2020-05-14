@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Red_System.Models.Entities
 {
-    public class Classi
+    public class Classe
     {
         public int ID { get; set; }
         public int Numero { get; set; }

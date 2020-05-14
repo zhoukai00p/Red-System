@@ -6,14 +6,14 @@ using System.Web;
 
 namespace Red_System.Models.Entities
 {
-    public class Studente
+    public class Password
     {
         public int ID { get; set; }
         [Required]
-        public string Nome { get; set; }
+        public string Descrizione { get; set; }
         [Required]
-        public string Cognome { get; set; }
+        public int IDStudente { get; set; }
         [Required]
-        public int IDClasse { get; set; }
+        public int IDVerifica { get; set; }
     }
 }

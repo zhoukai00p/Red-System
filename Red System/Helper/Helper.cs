@@ -11,7 +11,7 @@ namespace Red_System.Helper
     {
         public static List<SelectListItem> PrendiClasse()
         {
-            List<Classi> classi = DatabaseHelper.GetAllClasse();
+            List<Classe> classi = DatabaseHelper.GetAllClasse();
             List<SelectListItem> listItems = new List<SelectListItem>();
             for(int i=0; i<classi.Count; i++)
             {
@@ -36,9 +36,27 @@ namespace Red_System.Helper
 
                     Text = "Nome: " + verifica[i].Nome + "Descrizione :" + verifica[i].Descrizione,
                     Value = verifica[i].ID.ToString()
-                }) ;
+                });
             }
             return listItems;
         }
+
+        public static List<Password> GeneraPassword(Verifica verifica, List<Studente> studente)
+        {
+            var listaPassword = new List<Password>();
+            List<Password> listaAllPassword = DatabaseHelper.GetAllPassword();
+            var controllo = true;
+            int n = 0;
+            string password;
+
+            var listanuova = listaAllPassword.Where(t => t.IDVerifica == verifica.ID);
+            /*
+            foreach (var item in studente)
+            {
+                if()
+            }*/
+            return listaPassword;
+        }
+
     }
 }

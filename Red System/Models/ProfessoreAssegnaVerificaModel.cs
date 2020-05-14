@@ -11,7 +11,7 @@ namespace Red_System.Models
     {
         public string LabelClasse { get; set; }
         public string LabelVerifica { get; set; }
-        public List<Classi> ListaClassi { get; set; }
+        public List<Classe> ListaClassi { get; set; }
         public List<Verifica> ListaVerifiche { get; set; }
         public string LabelSend { get; set; }
         public int VerificaID { get; set; }

@@ -26,7 +26,7 @@ namespace Red_System.Helper
             return Professore;
         }
 
-        public static Classi InsertClasse(Classi classe)
+        public static Classe InsertClasse(Classe classe)
         {
             try
             {
@@ -110,13 +110,13 @@ namespace Red_System.Helper
             return verifica;
         }
 
-        public static List<Classi> GetAllClasse()
+        public static List<Classe> GetAllClasse()
         {
-            var ListaClasse = new List<Classi>();
+            var ListaClasse = new List<Classe>();
             using (var connection = new MySqlConnection(connectionString))
             {
                 var sql = "select * from Classe";
-                ListaClasse = connection.Query<Classi>(sql).ToList();
+                ListaClasse = connection.Query<Classe>(sql).ToList();
             }
             return ListaClasse;
         }
@@ -163,25 +163,25 @@ namespace Red_System.Helper
             return verifica;
         }
 
-        public static Classi GetClasseById(int id)
+        public static Classe GetClasseById(int id)
         {
-            var classe = new Classi();
+            var classe = new Classe();
             using (var connection = new MySqlConnection(connectionString))
             {
                 var sql = "select * from Classe where id=@id";
-                classe = connection.Query<Classi>(sql, new { id }).FirstOrDefault();
+                classe = connection.Query<Classe>(sql, new { id }).FirstOrDefault();
             }
             return classe;
         }
 
-        public static List<Studente> GetStudenteByIDClasse(int IDClasse)
+        public static List<Studente> GetAllStudenteByIDClasse(int IDClasse)
         {
             var studenti = new List<Studente>();
             try
             {
                 using (var connection = new MySqlConnection(connectionString))
                 {
-                    var sql = " select * from studente where idclasse=@idclasse";
+                    var sql = " select * from studente where idclasse=@IDClasse";
                     studenti = connection.Query<Studente>(sql, new { IDClasse }).ToList();
 
                 }
@@ -194,7 +194,16 @@ namespace Red_System.Helper
             return studenti;
         }
 
-
+        public static List<Password> GetAllPassword()
+        {
+            var listaPassword = new List<Password>();
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                var sql = "select * from Password";
+                listaPassword = connection.Query<Password>(sql).ToList();
+            }
+            return listaPassword;
+        }
 
     }
 }

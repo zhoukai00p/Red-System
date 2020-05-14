@@ -267,12 +267,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CustomRandomHelper.cs" />
     <Compile Include="Helper\DatabaseHelper.cs" />
     <Compile Include="Helper\Helper.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Entities\Password.cs" />
     <Compile Include="Models\ProfessoreConfermaAssegnaVerificaModel.cs" />
     <Compile Include="Models\Entities\Professore.cs" />
-    <Compile Include="Models\Entities\Classi.cs" />
+    <Compile Include="Models\Entities\Classe.cs" />
     <Compile Include="Models\Entities\DomandaChiusa.cs" />
     <Compile Include="Models\Entities\Studente.cs" />
     <Compile Include="Models\Entities\Verifica.cs" />

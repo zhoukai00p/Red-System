@@ -22,6 +22,6 @@ namespace Red_System.Models
         public DomandaChiusa DomandaChiusa { get; set; }
         public List<DomandaChiusa> ListaDomandaChiusa { get; set; }
         public Verifica Verifica { get; set; }
-        public Classi Classe { get; set; }
+        public Classe Classe { get; set; }
     }
 }

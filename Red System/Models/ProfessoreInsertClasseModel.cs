@@ -13,7 +13,7 @@ namespace Red_System.Models
         public string LabelIndirizzo { get; set; }
         public string LabelButtonSend { get; set; }
 
-        public Classi Classe { get; set; }
+        public Classe Classe { get; set; }
 
         public Professore Professore { get; internal set; }
         public string ErrorNumeroMessage { get; set; }
