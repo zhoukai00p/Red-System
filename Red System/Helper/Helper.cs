@@ -13,15 +13,15 @@ namespace Red_System.Helper
         {
             List<Classe> classi = DatabaseHelper.GetAllClasse();
             List<SelectListItem> listItems = new List<SelectListItem>();
-            for(int i=0; i<classi.Count; i++)
+            for (int i = 0; i < classi.Count; i++)
             {
                 listItems.Add(new SelectListItem
                 {
-
                     Text = classi[i].Numero + classi[i].Sezione.ToString() + " " + classi[i].Indirizzo,
-                    Value = classi[i].ID.ToString()
-                }) ;
+                    Value = classi[i].ID.ToString(),
+                });
             }
+
             return listItems;
         }
 
@@ -33,11 +33,11 @@ namespace Red_System.Helper
             {
                 listItems.Add(new SelectListItem
                 {
-
                     Text = "Nome: " + verifica[i].Nome + "Descrizione :" + verifica[i].Descrizione,
-                    Value = verifica[i].ID.ToString()
+                    Value = verifica[i].ID.ToString(),
                 });
             }
+
             return listItems;
         }
 
@@ -45,18 +45,42 @@ namespace Red_System.Helper
         {
             var listaPassword = new List<Password>();
             List<Password> listaAllPassword = DatabaseHelper.GetAllPassword();
-            var controllo = true;
-            int n = 0;
+            var controllo = false;
             string password;
-
-            var listanuova = listaAllPassword.Where(t => t.IDVerifica == verifica.ID);
-            /*
             foreach (var item in studente)
             {
-                if()
-            }*/
+                do
+                {
+                    controllo = false;
+                    password = CustomRandomHelper.RandomString(10);
+                    foreach (var item2 in listaAllPassword)
+                    {
+                        if (item2.Descrizione == password)
+                        {
+                            controllo = true;
+                        }
+                    }
+
+                    foreach (var item2 in listaPassword)
+                    {
+                        if (item2.Descrizione == password)
+                        {
+                            controllo = true;
+                        }
+                    }
+
+                    if (!controllo)
+                    {
+                        listaPassword.Add(new Password { Descrizione = password, IDVerifica = verifica.ID, IDStudente = item.ID });
+                    }
+                }
+                while (controllo);
+            }
+
             return listaPassword;
         }
-
     }
 }
+
+
+

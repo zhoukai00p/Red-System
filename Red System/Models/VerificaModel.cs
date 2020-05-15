@@ -15,6 +15,9 @@ namespace Red_System.Models
         public string LabelOpzioneC { get; set; }
         public string LabelOpzioneD { get; set; }
         public string LabelOpzioneE { get; set; }
+        public List<RispostaChiusa> ListaRispostaChiusa { get; set; }
         public Verifica Verifica { get; set; }
+        public Password Password { get; set; }
+
     }
 }

@@ -15,7 +15,7 @@ namespace Red_System.Helper
     {
         private static readonly string connectionString = ConfigurationManager.ConnectionStrings["Database"].ConnectionString;
 
-        public static Professore Login(string Username, string Password)
+        public static Professore LoginProfessore(string Username, string Password)
         {
             var Professore = new Professore();
             using (var connection = new MySqlConnection(connectionString))
@@ -23,14 +23,26 @@ namespace Red_System.Helper
                 var sql = "select * from Professore where Username = @Username and Password=@Password";
                 Professore = connection.Query<Professore>(sql, new { Username, Password }).FirstOrDefault();
             }
+
             return Professore;
+        }
+
+        public static Password LoginStudente(string Password)
+        {
+            var Studente = new Password();
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                var sql = "select * from Password where descrizione=@Password";
+                Studente = connection.Query<Password>(sql, new { Password }).FirstOrDefault();
+            }
+
+            return Studente;
         }
 
         public static Classe InsertClasse(Classe classe)
         {
             try
             {
-
                 using (var connection = new MySqlConnection(connectionString))
                 {
                     var sql = "INSERT INTO Classe (ID,Numero,Sezione,Indirizzo)" +
@@ -39,12 +51,13 @@ namespace Red_System.Helper
                     classe.ID = connection.Query<int>(sql, classe).FirstOrDefault();
                 }
             }
-                catch (Exception ex)
-                {
-                    //errore
-                    return null;
-                }
-                return classe;
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+
+            return classe;
         }
 
         public static Studente InsertStudente(Studente studente, int classeid)
@@ -62,9 +75,10 @@ namespace Red_System.Helper
             }
             catch (Exception ex)
             {
-                //errore
+                Debug.WriteLine(ex.Message);
                 return null;
             }
+
             return studente;
         }
 
@@ -83,10 +97,10 @@ namespace Red_System.Helper
             }
             catch (Exception ex)
             {
-                //errore
                 Debug.WriteLine(ex.Message);
                 return null;
             }
+
             return domande;
         }
 
@@ -104,10 +118,32 @@ namespace Red_System.Helper
             }
             catch (Exception ex)
             {
-                //errore
+                Debug.WriteLine(ex.Message);
                 return null;
             }
+
             return verifica;
+        }
+
+        public static Password InsertPassword(Password password)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    var sql = "INSERT INTO password (ID,Descrizione,IDStudente,IDVerifica)" +
+                        " VALUES (null,@Descrizione,@IDStudente,@IDVerifica); " +
+                        " SELECT CAST(LAST_INSERT_ID() as int ) ";
+                    password.ID = connection.Query<int>(sql, password).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+
+            return password;
         }
 
         public static List<Classe> GetAllClasse()
@@ -118,6 +154,7 @@ namespace Red_System.Helper
                 var sql = "select * from Classe";
                 ListaClasse = connection.Query<Classe>(sql).ToList();
             }
+
             return ListaClasse;
         }
 
@@ -129,6 +166,7 @@ namespace Red_System.Helper
                 var sql = "select * from Verifica";
                 ListaVerifiche = connection.Query<Verifica>(sql).ToList();
             }
+
             return ListaVerifiche;
         }
 
@@ -160,6 +198,7 @@ namespace Red_System.Helper
                 var sql = "select * from Verifica where id = @id";
                 verifica = connection.Query<Verifica>(sql, new { id }).FirstOrDefault();
             }
+
             return verifica;
         }
 
@@ -171,6 +210,7 @@ namespace Red_System.Helper
                 var sql = "select * from Classe where id=@id";
                 classe = connection.Query<Classe>(sql, new { id }).FirstOrDefault();
             }
+
             return classe;
         }
 
@@ -183,7 +223,6 @@ namespace Red_System.Helper
                 {
                     var sql = " select * from studente where idclasse=@IDClasse";
                     studenti = connection.Query<Studente>(sql, new { IDClasse }).ToList();
-
                 }
             }
             catch (Exception ex)
@@ -191,6 +230,7 @@ namespace Red_System.Helper
                 Debug.WriteLine(ex.Message);
                 throw;
             }
+
             return studenti;
         }
 
@@ -202,8 +242,8 @@ namespace Red_System.Helper
                 var sql = "select * from Password";
                 listaPassword = connection.Query<Password>(sql).ToList();
             }
+
             return listaPassword;
         }
-
     }
 }

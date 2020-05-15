@@ -4,3 +4,66 @@
     ViewBag.Title = "View";
     Layout = "~/Views/Shared/_LayoutProfessore.cshtml";
 }
+
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+
+            @using (Html.BeginForm("ProfessoreConfermaAssegnaVerifica", "Reserved", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                foreach (var item in Model.ListaPassword)
+                {
+            <div class="row">
+                @foreach (var item2 in Model.ListaStudente)
+                {
+
+                    <div class="col-md-offset-2 col-md-3">
+                        <div class="form-group">
+                            @if (item2.ID == item.IDStudente)
+                            {
+                                <label for="Name">@Model.LabelNome</label>
+                                <p>@item2.Nome</p>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-offset-2 col-md-3">
+                        <div class="form-group">
+                            @if (item2.ID == item.IDStudente)
+                            {
+                                <label for="Name">@Model.LabelCognome</label>
+                                <p>@item2.Cognome</p>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-offset-2 col-md-3">
+                        <div class="form-group">
+                            @if (item2.ID == item.IDStudente)
+                            {
+                                <label for="Name">@Model.LabelClasse</label>
+                                <p>@(Model.Classe.Numero) @(Model.Classe.Sezione)</p>
+                            }
+                        </div>
+                    </div>
+                }
+                <div class="col-md-offset-2 col-md-3">
+                    <div class="form-group">
+                        <label for="Name">@Model.LabelPassword</label>
+                        <p>@(item.Descrizione) </p>
+                    </div>
+                </div>
+            </div>
+
+            }
+
+            <div class="row" style="padding-left:40%">
+                <div class="col-md-offset-4 col-md-4">
+                    <input type="submit" value="@Model.LabelButtonSend" class="btn btn-primary" />
+                </div>
+            </div>
+            }
+
+        </div>
+    </div>

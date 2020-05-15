@@ -26,36 +26,63 @@ namespace Red_System.Controllers
         public ActionResult LoginProfessore()
         {
             var model = new LoginProfessoreModel();
+            LoginProfessoreLable(model);
+            return View(model);
+        }
+
+        public static void LoginProfessoreLable(LoginProfessoreModel model)
+        {
             model.Title = "Red System";
             model.Text = "<strong>Bold</strong> normal";
-
             model.LoginLabel = "Login";
             model.UsernameLabel = "Username";
             model.PasswordLabel = "Password";
             model.SendLabel = "Send";
-            return View(model);
         }
 
         [HttpPost]
         public ActionResult LoginProfessore(LoginProfessoreModel model)
         {
-            model.Title = "Red System";
-            model.Text = "<strong>Bold</strong> normal";
-
-            model.LoginLabel = "LoginProfessore Post";
-            model.UsernameLabel = "Username";
-            model.PasswordLabel = "Password";
-            model.SendLabel = "Send";
-            var professore = DatabaseHelper.Login(model.Username, model.Password);
+            LoginProfessoreLable(model);
+            var professore = DatabaseHelper.LoginProfessore(model.Username, model.Password);
             if (professore != null)
             {
-
                 Session["utenteLoggato"] = professore;
-
                 return RedirectToAction("HomeProfessore", "Reserved", new { id = professore.ID });
             }
-            model.ErrorMessage = "Wrong login!";
 
+            model.ErrorMessage = "Dati errati!";
+            return View(model);
+        }
+
+        public static void LoginStudenteLable(LoginStudenteModel model)
+        {
+            model.Title = "Red System";
+            model.Text = "<strong>Bold</strong> normal";
+            model.LoginLabel = "Login";
+            model.PasswordLabel = "Password";
+            model.SendLabel = "Send";
+        }
+
+        [HttpGet]
+        public ActionResult LoginStudente()
+        {
+            var model = new LoginStudenteModel();
+            LoginStudenteLable(model);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult LoginStudente(LoginProfessoreModel model)
+        {
+            LoginProfessoreLable(model);
+            var studente = DatabaseHelper.LoginStudente(model.Password);
+            if (studente != null)
+            {
+                Session["StudenteLoggato"] = studente;
+                return RedirectToAction("Verifica", "Reserved", new { id = studente.ID });
+            }
+            model.ErrorMessage = "Dati errati!";
             return View(model);
         }
 
