@@ -6,7 +6,7 @@
 }
 
 
-    <div class="wrapper fadeInDown">
+   <!-- --> <div class="wrapper fadeInDown">
         <div id="formContent">
 
             @using (Html.BeginForm("ProfessoreConfermaAssegnaVerifica", "Reserved", FormMethod.Post))
@@ -16,7 +16,8 @@
 
                 foreach (var item in Model.ListaPassword)
                 {
-            <div class="row">
+                <div class="container">
+                <div class="row">
                 @foreach (var item2 in Model.ListaStudente)
                 {
 
@@ -54,6 +55,7 @@
                         <p>@(item.Descrizione) </p>
                     </div>
                 </div>
+            </div>
             </div>
 
             }

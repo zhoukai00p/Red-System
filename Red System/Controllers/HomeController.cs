@@ -37,7 +37,7 @@ namespace Red_System.Controllers
             model.LoginLabel = "Login";
             model.UsernameLabel = "Username";
             model.PasswordLabel = "Password";
-            model.SendLabel = "Send";
+            model.SendLabel = "Invia";
         }
 
         [HttpPost]
@@ -61,7 +61,7 @@ namespace Red_System.Controllers
             model.Text = "<strong>Bold</strong> normal";
             model.LoginLabel = "Login";
             model.PasswordLabel = "Password";
-            model.SendLabel = "Send";
+            model.SendLabel = "Invia";
         }
 
         [HttpGet]
