@@ -7,41 +7,30 @@
     <title>@ViewBag.Title - Red System</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
+
 
 </head>
 <body>
     
-            <div class="sidebar text-center align-content-between">
-                <a href="~/Reserved/HomeProfessore/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger">Pagina principale</button></a>
-
+            <div class="sidebar d-inline-block">
+                <a class="nav-link" href="~/Reserved/HomeProfessore/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><ion-icon name="laptop-outline"></ion-icon><h3 class="text-danger"> Red System</h3></a>
                 <br />
+                    <a  href="~/Reserved/HomeProfessore/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><ion-icon name="home-outline"></ion-icon><span class="text-dark"> Pagina principale</span></a>
                 <br />
-
-                <a href="~/Reserved/ProfessoreInsertClasse/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger" >Inserisci classe</button></a>
-
+                    <a href="~/Reserved/ProfessoreInsertClasse/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><ion-icon name="add-outline"></ion-icon><span class="text-dark"> Inserisci classe</span></a>
                 <br />
+                    <a href="~/Reserved/ProfessoreInsertStudente/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><ion-icon name="add-outline"></ion-icon><span class="text-dark"> Inserisci studente</span></a>
                 <br />
-
-                <a href="~/Reserved/ProfessoreInsertStudente/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger" >Inserisci studente</button></a>
-
+                    <a href="~/Reserved/ProfessoreInsertVerifica/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><ion-icon name="add-outline"></ion-icon><span class="text-dark"> Inserisci verifica</span></a>
                 <br />
+                    <a href="~/Reserved/ProfessoreSelezionaVerifica/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><ion-icon name="checkbox-outline"></ion-icon><span class="text-dark"> Seleziona verifica</span></a>
                 <br />
-
-                <a href="~/Reserved/ProfessoreInsertVerifica/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger" >Inserisci verifica</button></a>
-
-                <br />
-                <br />
-
-                <a href="~/Reserved/ProfessoreSelezionaVerifica/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger" >Seleziona verifica</button></a>
-
-                <br />
-                <br />
-
-                <a href="~/Reserved/ProfessoreAssegnaVerifica/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><button type="button" class="btn btn-danger">Assegna Verifica</button></a>
-            </div>
-            <br />
-            <br />
+                    <a href="~/Reserved/ProfessoreAssegnaVerifica/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><ion-icon name="checkmark-done-outline"></ion-icon><span class="text-dark"> Assegna Verifica</span></a>
+</div>
             <div class="text-center center-block">
             @RenderBody()
             </div>
