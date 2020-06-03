@@ -414,7 +414,6 @@ namespace Red_System.Controllers
         [HttpGet]
         public ActionResult Verifica(int id)
         {
-
             var utenteLoggato = Session["StudenteLoggato"];
             if (utenteLoggato == null)
             {
@@ -439,6 +438,8 @@ namespace Red_System.Controllers
             }
 
             model.ListaDomandaChiusa = DatabaseHelper.GetAllDomandaChiusaByVerifica(model.Password.IDVerifica);
+            model.ListaRispostaChiusa = Helper.Helper.GeneraDomande(model.ListaDomandaChiusa, id);
+
             return View(model);
         }
     }
