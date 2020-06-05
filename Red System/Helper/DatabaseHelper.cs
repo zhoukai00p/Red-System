@@ -146,6 +146,26 @@ namespace Red_System.Helper
             return password;
         }
 
+        public static RispostaChiusa InsertRispostaChiusa(RispostaChiusa rispostaChiusa)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    var sql = "INSERT INTO RispostaChiusa (ID,RispStudenteA,RispStudenteB,RispStudenteC,RispStudenteD,RispStudenteE,IDstudente,IDdomanda)" +
+                        " VALUES (null,@RispStudenteA,@RispStudenteB,@RispStudenteC,@RispStudenteD,@RispStudenteE,@IDstudente,@IDdomanda); " +
+                        " SELECT CAST(LAST_INSERT_ID() as int ) ";
+                    rispostaChiusa.ID = connection.Query<int>(sql, rispostaChiusa).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+            return rispostaChiusa;
+        }
+
         public static List<Classe> GetAllClasse()
         {
             var ListaClasse = new List<Classe>();
@@ -245,5 +265,6 @@ namespace Red_System.Helper
 
             return listaPassword;
         }
+
     }
 }

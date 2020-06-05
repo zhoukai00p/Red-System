@@ -80,7 +80,7 @@ namespace Red_System.Helper
             return listaPassword;
         }
 
-        public static List<RispostaChiusa> GeneraDomande(List<DomandaChiusa> listaDomandaChiusa,int idStudente)
+        public static List<RispostaChiusa> GeneraDomande(List<DomandaChiusa> listaDomandaChiusa, int idStudente)
         {
             var listaRispostaChiusa = new List<RispostaChiusa>();
             foreach (var item in listaDomandaChiusa)
@@ -90,5 +90,6 @@ namespace Red_System.Helper
 
             return listaRispostaChiusa;
         }
+
     }
 }

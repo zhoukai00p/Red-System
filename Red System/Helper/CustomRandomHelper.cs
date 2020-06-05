@@ -20,5 +20,6 @@ namespace Red_System.Helper
         {
             return random.Next(min, max + 1);
         }
+
     }
 }

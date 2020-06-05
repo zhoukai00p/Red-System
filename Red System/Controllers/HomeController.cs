@@ -85,6 +85,5 @@ namespace Red_System.Controllers
             model.ErrorMessage = "Dati errati!";
             return View(model);
         }
-
     }
 }

@@ -12,7 +12,7 @@
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
 
-            for (int i=0;i<Model.ListaDomandaChiusa.Count;i++)
+            for (int i = 0; i < Model.ListaDomandaChiusa.Count; i++)
             {
 
                 <div class="row">
@@ -26,7 +26,7 @@
                         <div class="form-group">
                             <label for="Name">@Model.LabelOpzioneA</label>
                             <p>@(Model.ListaDomandaChiusa[i].OpzioneA) </p>
-                            @Html.CheckBoxFor(t => Model.ListaRispostaChiusa[i].RispStudenteA)
+                            @Html.CheckBoxFor(t => t.ListaRispostaChiusa[i].RispStudenteA)
                         </div>
                     </div>
                 </div>
@@ -35,14 +35,14 @@
                         <div class="form-group">
                             <label for="Name">@Model.LabelOpzioneB</label>
                             <p>@(Model.ListaDomandaChiusa[i].OpzioneB) </p>
-                            @Html.CheckBoxFor(t => Model.ListaRispostaChiusa[i].RispStudenteA)
+                            @Html.CheckBoxFor(t => t.ListaRispostaChiusa[i].RispStudenteB)
                         </div>
                     </div>
                     <div class="col-md-offset-2 col-md-4">
                         <div class="form-group">
                             <label for="Name">@Model.LabelOpzioneC</label>
                             <p>@(Model.ListaDomandaChiusa[i].OpzioneC) </p>
-                            @Html.CheckBoxFor(t => Model.ListaRispostaChiusa[i].RispStudenteA)
+                            @Html.CheckBoxFor(t => t.ListaRispostaChiusa[i].RispStudenteC)
                         </div>
                     </div>
                 </div>
@@ -51,14 +51,14 @@
                         <div class="form-group">
                             <label for="Name">@Model.LabelOpzioneD</label>
                             <p>@(Model.ListaDomandaChiusa[i].OpzioneD) </p>
-                            @Html.CheckBoxFor(t => Model.ListaRispostaChiusa[i].RispStudenteA)
+                            @Html.CheckBoxFor(t => t.ListaRispostaChiusa[i].RispStudenteD)
                         </div>
                     </div>
                     <div class="col-md-offset-2 col-md-4">
                         <div class="form-group">
                             <label for="Name">@Model.LabelOpzioneE</label>
                             <p>@(Model.ListaDomandaChiusa[i].OpzioneE) </p>
-                            @Html.CheckBoxFor(t => Model.ListaRispostaChiusa[i].RispStudenteA)
+                            @Html.CheckBoxFor(t => t.ListaRispostaChiusa[i].RispStudenteE)
                         </div>
                     </div>
                 </div>
@@ -67,6 +67,8 @@
                         <input id="send" type="submit" value="Consegna" class="btn btn-danger" />
                     </div>
                 </div>
+                @Html.HiddenFor(t => t.ListaRispostaChiusa[i].IDDomanda)
+                @Html.HiddenFor(t => t.ListaRispostaChiusa[i].IDstudente)
             }
         }
 

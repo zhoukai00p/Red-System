@@ -438,9 +438,22 @@ namespace Red_System.Controllers
             }
 
             model.ListaDomandaChiusa = DatabaseHelper.GetAllDomandaChiusaByVerifica(model.Password.IDVerifica);
-            model.ListaRispostaChiusa = Helper.Helper.GeneraDomande(model.ListaDomandaChiusa, id);
+            model.ListaRispostaChiusa = Helper.Helper.GeneraDomande(model.ListaDomandaChiusa, model.Password.IDStudente);
 
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Verifica(int id, VerificaModel model)
+        {
+            if (model.ListaRispostaChiusa.Count > 0)
+            {
+                foreach (var item in model.ListaRispostaChiusa)
+                {
+                    DatabaseHelper.InsertRispostaChiusa(item);
+                }
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }
