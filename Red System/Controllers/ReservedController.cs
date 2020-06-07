@@ -411,6 +411,114 @@ namespace Red_System.Controllers
             return View(model);
         }
 
+        public static void ProfessoreSelezionaClasseVisualizzaPunteggioLabel(ProfessoreSelezionaClasseVisualizzaPunteggioModel model)
+        {
+            model.Title = "Red system";
+            model.Text = "<strong>Bold</strong> normal";
+            model.LabelButtonSend = "Avanti";
+        }
+
+        [HttpGet]
+        public ActionResult ProfessoreSelezionaClasseVisualizzaPunteggio(int id,int verificaID)
+        {
+            var utenteLoggato = Session["utenteLoggato"];
+            if (utenteLoggato == null)
+            {
+                return RedirectToAction("LoginProfessore", "Home");
+            }
+
+            var model = new ProfessoreSelezionaClasseVisualizzaPunteggioModel();
+
+            model.Professore = (Professore)utenteLoggato;
+            if (model.Professore.ID != id)
+            {
+                return RedirectToAction("HomeProfessore", "Reserved", new { model.Professore.ID });
+            }
+
+            ProfessoreSelezionaClasseVisualizzaPunteggioLabel(model);
+
+            model.ListaSelectClasse = Helper.Helper.PrendiClasseByIDVerifica(verificaID);
+            //model.DomandeChiuse = DatabaseHelper.GetAllDomandeChiuse();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult ProfessoreSelezionaClasseVisualizzaPunteggio(int id, ProfessoreSelezionaClasseVisualizzaPunteggioModel model)
+        { 
+            model.ListaClasse = DatabaseHelper.GetAllClasse();
+            model.ListaSelectClasse = Helper.Helper.PrendiClasse();
+            SelectListItem y = model.ListaSelectClasse.Where(t => t.Value == model.ClasseSelectedValue).FirstOrDefault();
+            model.ClasseID = Convert.ToInt32(y.Value);
+
+            Classe classe;
+            classe = DatabaseHelper.GetClasseById(model.ClasseID);
+
+            var utenteLoggato = Session["utenteLoggato"];
+            model.Professore = (Professore)utenteLoggato;
+            if (classe != null)
+            {
+                return RedirectToAction("ProfessoreConfermaAssegnaVerifica", "Reserved", new { model.Professore.ID, classe});
+            }
+
+            return View(model);
+        }
+
+        public static void ProfessoreSelezionaVerificaVisualizzaPunteggioLabel(ProfessoreSelezionaVerificaVisualizzaPunteggioModel model)
+        {
+            model.Title = "Red system";
+            model.Text = "<strong>Bold</strong> normal";
+            model.LabelButtonSend = "Avanti";
+        }
+
+        [HttpGet]
+        public ActionResult ProfessoreSelezionaVerificaVisualizzaPunteggio(int id)
+        {
+            var utenteLoggato = Session["utenteLoggato"];
+            if (utenteLoggato == null)
+            {
+                return RedirectToAction("LoginProfessore", "Home");
+            }
+
+            var model = new ProfessoreSelezionaVerificaVisualizzaPunteggioModel();
+
+            model.Professore = (Professore)utenteLoggato;
+            if (model.Professore.ID != id)
+            {
+                return RedirectToAction("HomeProfessore", "Reserved", new { model.Professore.ID });
+            }
+
+            ProfessoreSelezionaVerificaVisualizzaPunteggioLabel(model);
+
+            model.ListaSelectVerifica = Helper.Helper.PrendiVerifica();
+
+            
+            //model.DomandeChiuse = DatabaseHelper.GetAllDomandeChiuse();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult ProfessoreSelezionaVerificaVisualizzaPunteggio(int id, ProfessoreSelezionaVerificaVisualizzaPunteggioModel model)
+        {
+            model.ListaVerifica = DatabaseHelper.GetAllVerifica();
+            model.ListaSelectVerifica = Helper.Helper.PrendiVerifica();
+            SelectListItem x = model.ListaSelectVerifica.Where(t => t.Value == model.VerificaSelectedValue).FirstOrDefault();
+            model.VerificaID = Convert.ToInt32(x.Value);
+
+            Verifica verifica;
+            verifica = DatabaseHelper.GetVerificaById(model.VerificaID);
+
+            var utenteLoggato = Session["utenteLoggato"];
+            model.Professore = (Professore)utenteLoggato;
+            if (verifica != null)
+            {
+                return RedirectToAction("ProfessoreSelezionaClasseVisualizzaPunteggio", "Reserved", new { id= model.Professore.ID, verificaID = verifica.ID });
+            }
+
+            return View(model);
+        }
+
+
+
         [HttpGet]
         public ActionResult Verifica(int id)
         {

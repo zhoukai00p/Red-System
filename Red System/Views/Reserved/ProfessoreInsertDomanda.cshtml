@@ -9,200 +9,211 @@
     <div id="formContent">
         @using (Html.BeginForm("ProfessoreInsertDomanda", "Reserved", FormMethod.Post))
         {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true)
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
 
-            <br />
-            <br />
-            <div class="row" style="padding-left:30%">
-                <div class="col-md-offset-2 col-md-4">
-                    <div class="form-group">
-                        <label for="Name">@Model.LabelDomanda</label>
-                        @Html.TextBoxFor(t => t.DomandaChiusa.Domanda, new { @class = "form-control fadeIn second", placeholder = Model.LabelDomanda })
-                        @Html.ValidationMessageFor(t => t.DomandaChiusa.Domanda)
-                    </div>
-                </div>
-
-                <div class="col-md-offset-2 col-md-4">
-                    <div class="form-group">
-                        <label for="Name">@Model.LabelOpzioneA</label>
-                        @Html.TextBoxFor(t => t.DomandaChiusa.OpzioneA, new { @class = "form-control fadeIn second", placeholder = Model.LabelOpzioneA })
-                        @Html.ValidationMessageFor(t => t.DomandaChiusa.OpzioneA)
-                        @Html.CheckBoxFor(t => t.DomandaChiusa.RispGiustaA)
-                    </div>
+        <br />
+        <br />
+        <h1> Inserimento </h1>
+        <br />
+        <br />
+        <div class="row" style="padding-left:30%">
+            <div class="col-md-offset-2 col-md-4">
+                <div class="form-group">
+                    <label for="Name">@Model.LabelDomanda</label>
+                    @Html.TextBoxFor(t => t.DomandaChiusa.Domanda, new { @class = "form-control fadeIn second", placeholder = Model.LabelDomanda })
+                    @Html.ValidationMessageFor(t => t.DomandaChiusa.Domanda)
                 </div>
             </div>
 
-            <div class="row" style="padding-left:30%">
-                <div class="col-md-offset-2 col-md-4">
-                    <div class="col-md-offset-2 col-md-4">
-                        <div class="form-group">
-                            <label for="Name">@Model.LabelOpzioneB</label>
-                            @Html.TextBoxFor(t => t.DomandaChiusa.OpzioneB, new { @class = "form-control fadeIn second", placeholder = Model.LabelOpzioneB })
-                            @Html.ValidationMessageFor(t => t.DomandaChiusa.OpzioneB)
-                            @Html.CheckBoxFor(t => t.DomandaChiusa.RispGiustaB)
-                        </div>
-                    </div>
+            <div class="col-md-offset-2 col-md-4">
+                <div class="form-group">
+                    <label for="Name">@Model.LabelOpzioneA</label>
+                    @Html.TextBoxFor(t => t.DomandaChiusa.OpzioneA, new { @class = "form-control fadeIn second", placeholder = Model.LabelOpzioneA })
+                    @Html.ValidationMessageFor(t => t.DomandaChiusa.OpzioneA)
+                    @Html.CheckBoxFor(t => t.DomandaChiusa.RispGiustaA)
                 </div>
-                <div class="col-md-offset-2 col-md-4">
-                    <div class="form-group">
-                        <label for="Name">@Model.LabelOpzioneC</label>
-                        @Html.TextBoxFor(t => t.DomandaChiusa.OpzioneC, new { @class = "form-control fadeIn second", placeholder = Model.LabelOpzioneC })
-                        @Html.ValidationMessageFor(t => t.DomandaChiusa.OpzioneC)
-                        @Html.CheckBoxFor(t => t.DomandaChiusa.RispGiustaC)
-                    </div>
-                </div>
-            </div>
-
-            <div class="row" style="padding-left:30%">
-                <div class="col-md-offset-2 col-md-4">
-                    <div class="col-md-offset-2 col-md-4">
-                        <div class="form-group">
-                            <label for="Name">@Model.LabelOpzioneD</label>
-                            @Html.TextBoxFor(t => t.DomandaChiusa.OpzioneD, new { @class = "form-control fadeIn second", placeholder = Model.LabelOpzioneD })
-                            @Html.ValidationMessageFor(t => t.DomandaChiusa.OpzioneD)
-                            @Html.CheckBoxFor(t => t.DomandaChiusa.RispGiustaD)
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-offset-2 col-md-4">
-                    <div class="form-group">
-                        <label for="Name">@Model.LabelOpzioneE</label>
-                        @Html.TextBoxFor(t => t.DomandaChiusa.OpzioneE, new { @class = "form-control fadeIn second", placeholder = Model.LabelOpzioneE })
-                        @Html.ValidationMessageFor(t => t.DomandaChiusa.OpzioneE)
-                        @Html.CheckBoxFor(t => t.DomandaChiusa.RispGiustaE)
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="padding-left:30%">
-                <div class="col-md-offset-2 col-md-4">
-                    <div class="col-md-offset-2 col-md-4">
-                        <div class="form-group">
-                            <label for="Name">@Model.LabelOpzioneD</label>
-                            @Html.TextBoxFor(t => t.DomandaChiusa.Punteggio, new { @class = "form-control fadeIn second", placeholder = Model.LabelPunteggio })
-                            @Html.ValidationMessageFor(t => t.DomandaChiusa.Punteggio)
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-
-            <div class="row">
-                <div class="col-md-offset-4 col-md-4">
-                    <input id="send" type="submit" value="@Model.LabelButtonSend" class="btn btn-danger" />
-                </div>
-            </div>
-
-
-            if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
-            {
-                <div class="row">
-                    <div class="col-md-offset-4 col-md-4">
-                        <p class="field-validation-error">@Html.Raw(Model.ErrorMessage) </p>
-                    </div>
-                </div>
-            }
-        }
-
-        <div class="row">
-            <div class="col-md-offset-4 col-md-4">
-                @{
-                    foreach (var item in Model.ListaDomandaChiusa)
-                    {
-                                <div>
-                                    @item.Domanda
-                                </div>
-                                <br />
-                                <div>
-                                    @item.OpzioneA
-                                    @if (item.RispGiustaA)
-                                    {
-                                        <div>
-                                            giusta
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <div>
-                                            sbagliata
-                                        </div>
-                                    }
-                                </div>
-                                <br />
-                                <div>
-                                    @item.OpzioneB
-                                    @if (item.RispGiustaB)
-                                    {
-                                        <div>
-                                            giusta
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <div>
-                                            sbagliata
-                                        </div>
-                                    }
-                                </div>
-                                <br />
-                                <div>
-                                    @item.OpzioneC
-                                    @if (item.RispGiustaC)
-                                    {
-                                        <div>
-                                            giusta
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <div>
-                                            sbagliata
-                                        </div>
-                                    }
-                                </div>
-                                <br />
-                                <div>
-                                    @item.OpzioneD
-                                    @if (item.RispGiustaD)
-                                    {
-                                        <div>
-                                            giusta
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <div>
-                                            sbagliata
-                                        </div>
-                                    }
-                                </div>
-                                <br />
-                                <div>
-                                    @item.OpzioneE
-                                    @if (item.RispGiustaE)
-                                    {
-                                        <div>
-                                            giusta
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <div>
-                                            sbagliata
-                                        </div>
-                                    }
-                                </div>
-                            
-                        }
-                    }
-                
             </div>
         </div>
 
+        <div class="row" style="padding-left:30%">
+            <div class="col-md-offset-2 col-md-4">
+                <div class="form-group">
+                    <label for="Name">@Model.LabelOpzioneB</label>
+                    @Html.TextBoxFor(t => t.DomandaChiusa.OpzioneB, new { @class = "form-control fadeIn second", placeholder = Model.LabelOpzioneB })
+                    @Html.ValidationMessageFor(t => t.DomandaChiusa.OpzioneB)
+                    @Html.CheckBoxFor(t => t.DomandaChiusa.RispGiustaB)
+                </div>
+            </div>
+            <div class="col-md-offset-2 col-md-4">
+                <div class="form-group">
+                    <label for="Name">@Model.LabelOpzioneC</label>
+                    @Html.TextBoxFor(t => t.DomandaChiusa.OpzioneC, new { @class = "form-control fadeIn second", placeholder = Model.LabelOpzioneC })
+                    @Html.ValidationMessageFor(t => t.DomandaChiusa.OpzioneC)
+                    @Html.CheckBoxFor(t => t.DomandaChiusa.RispGiustaC)
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="padding-left:30%">
+            <div class="col-md-offset-2 col-md-4">
+                <div class="form-group">
+                    <label for="Name">@Model.LabelOpzioneD</label>
+                    @Html.TextBoxFor(t => t.DomandaChiusa.OpzioneD, new { @class = "form-control fadeIn second", placeholder = Model.LabelOpzioneD })
+                    @Html.ValidationMessageFor(t => t.DomandaChiusa.OpzioneD)
+                    @Html.CheckBoxFor(t => t.DomandaChiusa.RispGiustaD)
+                </div>
+            </div>
+            <div class="col-md-offset-2 col-md-4">
+                <div class="form-group">
+                    <label for="Name">@Model.LabelOpzioneE</label>
+                    @Html.TextBoxFor(t => t.DomandaChiusa.OpzioneE, new { @class = "form-control fadeIn second", placeholder = Model.LabelOpzioneE })
+                    @Html.ValidationMessageFor(t => t.DomandaChiusa.OpzioneE)
+                    @Html.CheckBoxFor(t => t.DomandaChiusa.RispGiustaE)
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding-left:30%">
+            <div class="col-md-offset-2 col-md-4">
+                <div class="form-group">
+                    <label for="Name">Totale domanda</label>
+                    @Html.TextBoxFor(t => t.DomandaChiusa.Punteggio, new { @class = "form-control fadeIn second", placeholder = Model.LabelPunteggio })
+                    @Html.ValidationMessageFor(t => t.DomandaChiusa.Punteggio)
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="text-center">
+            <input id="send" type="submit" value="@Model.LabelButtonSend" class="btn btn-danger" />
+        </div>
+            if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+            {
+        <div class="row">
+            <div class="col-md-offset-4 col-md-4">
+                <p class="field-validation-error">@Html.Raw(Model.ErrorMessage) </p>
+            </div>
+        </div>
+            }
+        }
+
+
+
     </div>
+</div>
+
+
+<br />
+<br />
+
+
+<h1> Riepilogo </h1>
+<br />
+<br />
+<div class="card-group" style="width:80%; height:90%; margin-left: 15%;">
+
+
+    @{
+
+        foreach (var item in Model.ListaDomandaChiusa)
+        {
+
+
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            @item.Domanda
+                        </div>
+                        <br />
+                        <div>
+                            @item.OpzioneA
+                            @if (item.RispGiustaA)
+                                {
+                            <div>
+                                giusta
+                            </div>
+                                }
+                                else
+                                {
+                            <div>
+                                sbagliata
+                            </div>
+                                }
+                        </div>
+                        <br />
+                        <div>
+                            @item.OpzioneB
+                            @if (item.RispGiustaB)
+                                {
+                            <div>
+                                giusta
+                            </div>
+                                }
+                                else
+                                {
+                            <div>
+                                sbagliata
+                            </div>
+                                }
+                        </div>
+                        <br />
+                        <div>
+                            @item.OpzioneC
+                            @if (item.RispGiustaC)
+                                {
+                            <div>
+                                giusta
+                            </div>
+                                }
+                                else
+                                {
+                            <div>
+                                sbagliata
+                            </div>
+                                }
+                        </div>
+                        <br />
+                        <div>
+                            @item.OpzioneD
+                            @if (item.RispGiustaD)
+                                {
+                            <div>
+                                giusta
+                            </div>
+                                }
+                                else
+                                {
+                            <div>
+                                sbagliata
+                            </div>
+                                }
+                        </div>
+                        <br />
+                        <div>
+                            @item.OpzioneE
+                            @if (item.RispGiustaE)
+                                {
+                            <div>
+                                giusta
+                            </div>
+                                }
+                                else
+                                {
+                            <div>
+                                sbagliata
+                            </div>
+                                }
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+            </div>
+        </div>
+
+        }
+
+    }
 </div>

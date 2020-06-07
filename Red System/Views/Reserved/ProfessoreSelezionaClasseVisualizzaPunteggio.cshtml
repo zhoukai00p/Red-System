@@ -1,6 +1,5 @@
 ﻿@using Red_System.Models.Entities;
-@model Red_System.Models.ProfessoreSelezionaVerificaModel
-
+@model Red_System.Models.ProfessoreSelezionaClasseVisualizzaPunteggioModel
 @{
     Layout = "~/Views/Shared/_LayoutProfessore.cshtml";
 }
@@ -9,7 +8,7 @@
 <div class="wrapper fadeInDown">
     <div id="formContent">
 
-        @using (Html.BeginForm("ProfessoreSelezionaVerifica", "Reserved", FormMethod.Post))
+        @using (Html.BeginForm("ProfessoreSelezionaClasseVisualizzaPunteggio", "Reserved", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
@@ -18,7 +17,7 @@
             <div class="row" style="padding-left:30%">
                 <div class="col-md-offset-2 col-md-4">
                     <div class="form-group">
-                        @Html.DropDownListFor(t => t.VerificaSelectedValue, Model.ListaSelectVerifica, "Seleziona la Verifica")
+                        @Html.DropDownListFor(t => t.ClasseSelectedValue, Model.ListaSelectClasse, "Seleziona la classe")
                     </div>
                 </div>
             </div>

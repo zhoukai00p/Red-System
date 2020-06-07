@@ -254,6 +254,26 @@ namespace Red_System.Helper
             return studenti;
         }
 
+        public static List<Classe> GetAllClasseByIDVerifica(int IDVerifica)
+        {
+            var classi = new List<Classe>();
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    var sql = "select c.Numero ,c.Sezione ,c.Indirizzo from classe c, studente s, domandachiusa d, rispostachiusa r where d.IDVerifica = @IDVerifica AND d.ID = r.IDDomanda AND s.ID = r.IDstudente AND s.IDClasse = c.ID group by (c.ID);";
+                    classi = connection.Query<Classe>(sql, new { IDVerifica }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                throw;
+            }
+
+            return classi;
+        }
+
         public static List<Password> GetAllPassword()
         {
             var listaPassword = new List<Password>();

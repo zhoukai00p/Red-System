@@ -41,6 +41,23 @@ namespace Red_System.Helper
             return listItems;
         }
 
+        public static List<SelectListItem> PrendiClasseByIDVerifica(int IDVerifica)
+        {
+            List<Classe> classi = DatabaseHelper.GetAllClasseByIDVerifica(IDVerifica);
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            for (int i = 0; i < classi.Count; i++)
+            {
+                listItems.Add(new SelectListItem
+                {
+                    Text = classi[i].Numero + classi[i].Sezione.ToString() + " " + classi[i].Indirizzo,
+                    Value = classi[i].ID.ToString(),
+                });
+            }
+
+            return listItems;
+        }
+
+
         public static List<Password> GeneraPassword(Verifica verifica, List<Studente> studente)
         {
             var listaPassword = new List<Password>();

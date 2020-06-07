@@ -286,7 +286,9 @@
     <Compile Include="Models\ProfessoreInsertDomandaModel.cs" />
     <Compile Include="Models\ProfessoreInsertStudenteModel.cs" />
     <Compile Include="Models\ProfessoreInsertVerificaModel.cs" />
+    <Compile Include="Models\ProfessoreSelezionaClasseVisualizzaPunteggioModel.cs" />
     <Compile Include="Models\ProfessoreSelezionaVerificaModel.cs" />
+    <Compile Include="Models\ProfessoreSelezionaVerificaVisualizzaPunteggioModel.cs" />
     <Compile Include="Models\ProfiloProfessoreModel.cs" />
     <Compile Include="Models\VerificaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -308,6 +310,8 @@
     <Content Include="Views\Reserved\ProfessoreAssegnaVerifica.cshtml" />
     <Content Include="Views\Reserved\ProfessoreConfermaAssegnaVerifica.cshtml" />
     <Content Include="Views\Home\LoginStudente.cshtml" />
+    <Content Include="Views\Reserved\ProfessoreSelezionaClasseVisualizzaPunteggio.cshtml" />
+    <Content Include="Views\Reserved\ProfessoreSelezionaVerificaVisualizzaPunteggio.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
