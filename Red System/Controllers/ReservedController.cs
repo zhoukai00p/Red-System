@@ -446,13 +446,14 @@ namespace Red_System.Controllers
         [HttpPost]
         public ActionResult Verifica(int id, VerificaModel model)
         {
-            if (model.ListaRispostaChiusa.Count > 0)
+            var utenteLoggato = Session["StudenteLoggato"];
+            model.Password = (Password)utenteLoggato;
+            foreach (var item in model.ListaRispostaChiusa)
             {
-                foreach (var item in model.ListaRispostaChiusa)
-                {
-                    DatabaseHelper.InsertRispostaChiusa(item);
-                }
+                DatabaseHelper.InsertRispostaChiusa(item);
+                DatabaseHelper.RemovePassword(model.Password);
             }
+            Session.Remove("StudenteLoggato");
             return RedirectToAction("Index", "Home");
         }
     }

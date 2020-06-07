@@ -266,5 +266,15 @@ namespace Red_System.Helper
             return listaPassword;
         }
 
+        public static Password RemovePassword(Password password)
+        {
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                var sql = "Delete from Password where Id = @Id";
+                password = connection.Query<Password>(sql, new { password }).FirstOrDefault();
+            }
+            return password;
+        }
+
     }
 }
