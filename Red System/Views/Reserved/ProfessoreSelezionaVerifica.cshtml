@@ -11,24 +11,24 @@
 
         @using (Html.BeginForm("ProfessoreSelezionaVerifica", "Reserved", FormMethod.Post))
         {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true)
-            <br />
-            <br />
-            <div class="row" style="padding-left:30%">
-                <div class="col-md-offset-2 col-md-4">
-                    <div class="form-group">
-                        @Html.DropDownListFor(t => t.VerificaSelectedValue, Model.ListaSelectVerifica, "Seleziona la Verifica")
-                    </div>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <br />
+        <br />
+        <div class="row" style="padding-left:38%">
+            <div class="col-md-offset-2 col-md-4">
+                <div class="form-group">
+                    @Html.DropDownListFor(t => t.VerificaSelectedValue, Model.ListaSelectVerifica, "Seleziona la Verifica", new { @class = "btn dropdown-toggle dropdown-toggle-split"  , @style="background-color: white"})
                 </div>
             </div>
-            <br />
-            <br />
-            <div class="row" style="padding-left:40%">
-                <div class="col-md-offset-4 col-md-4">
-                    <input id="send" type="submit" value="@Model.LabelButtonSend" class="btn btn-danger" />
-                </div>
+        </div>
+        <br />
+        <br />
+        <div class="row" style="padding-left:40%">
+            <div class="col-md-offset-4 col-md-4">
+                <input id="send" type="submit" value="@Model.LabelButtonSend" class="btn btn-danger" />
             </div>
+        </div>
         }
 
     </div>

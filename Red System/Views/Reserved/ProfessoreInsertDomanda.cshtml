@@ -18,7 +18,7 @@
         <h1> Inserimento </h1>
         <br />
         <br />
-        <div class="row" style="padding-left:30%">
+        <div class="row" style="padding-left:42%">
             <div class="col-md-offset-2 col-md-4">
                 <div class="form-group">
                     <label for="Name">@Model.LabelDomanda</label>
@@ -26,6 +26,8 @@
                     @Html.ValidationMessageFor(t => t.DomandaChiusa.Domanda)
                 </div>
             </div>
+        </div>
+        <div class="row" style="padding-left:42%">
 
             <div class="col-md-offset-2 col-md-4">
                 <div class="form-group">
@@ -37,7 +39,7 @@
             </div>
         </div>
 
-        <div class="row" style="padding-left:30%">
+        <div class="row" style="padding-left:42%">
             <div class="col-md-offset-2 col-md-4">
                 <div class="form-group">
                     <label for="Name">@Model.LabelOpzioneB</label>
@@ -46,6 +48,9 @@
                     @Html.CheckBoxFor(t => t.DomandaChiusa.RispGiustaB)
                 </div>
             </div>
+        </div>
+
+        <div class="row" style="padding-left:42%">
             <div class="col-md-offset-2 col-md-4">
                 <div class="form-group">
                     <label for="Name">@Model.LabelOpzioneC</label>
@@ -56,7 +61,7 @@
             </div>
         </div>
 
-        <div class="row" style="padding-left:30%">
+        <div class="row" style="padding-left:42%">
             <div class="col-md-offset-2 col-md-4">
                 <div class="form-group">
                     <label for="Name">@Model.LabelOpzioneD</label>
@@ -65,6 +70,9 @@
                     @Html.CheckBoxFor(t => t.DomandaChiusa.RispGiustaD)
                 </div>
             </div>
+        </div>
+
+        <div class="row" style="padding-left:42%">
             <div class="col-md-offset-2 col-md-4">
                 <div class="form-group">
                     <label for="Name">@Model.LabelOpzioneE</label>
@@ -74,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <div class="row" style="padding-left:30%">
+        <div class="row" style="padding-left:42%">
             <div class="col-md-offset-2 col-md-4">
                 <div class="form-group">
                     <label for="Name">Totale domanda</label>
@@ -110,7 +118,7 @@
 <h1> Riepilogo </h1>
 <br />
 <br />
-<div class="card-group" style="width:80%; height:90%; margin-left: 15%;">
+<div class="card-deck" style="width:80%; height:90%; margin-left: 15%;">
 
 
     @{
@@ -121,93 +129,128 @@
 
         <div class="row">
             <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <div>
+                    <div class="card bg-light">
+                        <div class="card-header">
                             @item.Domanda
                         </div>
-                        <br />
-                        <div>
-                            @item.OpzioneA
-                            @if (item.RispGiustaA)
-                                {
+                        <div class="card-body">
                             <div>
-                                giusta
-                            </div>
+                                @item.OpzioneA
+                                @if (item.RispGiustaA)
+                                {
+                                <div>
+                                    <svg class="bi bi-check-square" width="24px" height="24px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                        <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z" />
+                                    </svg>
+                                </div>
                                 }
                                 else
                                 {
-                            <div>
-                                sbagliata
-                            </div>
+                                <div>
+                                    <svg class="bi bi-x-square" width="24px" height="24px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                        <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z" />
+                                        <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z" />
+                                    </svg>
+                                </div>
                                 }
-                        </div>
-                        <br />
-                        <div>
-                            @item.OpzioneB
-                            @if (item.RispGiustaB)
-                                {
-                            <div>
-                                giusta
                             </div>
+                            <br />
+                            <div>
+                                @item.OpzioneB
+                                @if (item.RispGiustaB)
+                                {
+                                <div>
+                                    <svg class="bi bi-check-square" width="24px" height="24px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                        <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z" />
+                                    </svg>
+
+                                </div>
                                 }
                                 else
                                 {
-                            <div>
-                                sbagliata
-                            </div>
+                                <div>
+                                    <svg class="bi bi-x-square" width="24px" height="24px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                        <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z" />
+                                        <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z" />
+                                    </svg>
+                                </div>
                                 }
-                        </div>
-                        <br />
-                        <div>
-                            @item.OpzioneC
-                            @if (item.RispGiustaC)
-                                {
-                            <div>
-                                giusta
                             </div>
+                            <br />
+                            <div>
+                                @item.OpzioneC
+                                @if (item.RispGiustaC)
+                                {
+                                <div>
+                                    <svg class="bi bi-check-square" width="24px" height="24px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                        <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z" />
+                                    </svg>
+                                </div>
                                 }
                                 else
                                 {
-                            <div>
-                                sbagliata
-                            </div>
+                                <div>
+                                    <svg class="bi bi-x-square" width="24px" height="24px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                        <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z" />
+                                        <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z" />
+                                    </svg>
+                                </div>
                                 }
-                        </div>
-                        <br />
-                        <div>
-                            @item.OpzioneD
-                            @if (item.RispGiustaD)
-                                {
-                            <div>
-                                giusta
                             </div>
+                            <br />
+                            <div>
+                                @item.OpzioneD
+                                @if (item.RispGiustaD)
+                                {
+                                <div>
+                                    <svg class="bi bi-check-square" width="24px" height="24px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                        <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z" />
+                                    </svg>
+                                </div>
                                 }
                                 else
                                 {
-                            <div>
-                                sbagliata
-                            </div>
+                                <div>
+                                    <svg class="bi bi-x-square" width="24px" height="24px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                        <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z" />
+                                        <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z" />
+                                    </svg>
+                                </div>
                                 }
-                        </div>
-                        <br />
-                        <div>
-                            @item.OpzioneE
-                            @if (item.RispGiustaE)
-                                {
-                            <div>
-                                giusta
                             </div>
+                            <br />
+                            <div>
+                                @item.OpzioneE
+                                @if (item.RispGiustaE)
+                                {
+                                <div>
+                                    <svg class="bi bi-check-square" width="24px" height="24px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                        <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z" />
+                                    </svg>
+                                </div>
                                 }
                                 else
                                 {
-                            <div>
-                                sbagliata
-                            </div>
+                                <div>
+                                    <svg class="bi bi-x-square" width="24px" height="24px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                        <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z" />
+                                        <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z" />
+                                    </svg>
+                                </div>
                                 }
+                            </div>
                         </div>
                     </div>
-                </div>
                 <br />
                 <br />
             </div>

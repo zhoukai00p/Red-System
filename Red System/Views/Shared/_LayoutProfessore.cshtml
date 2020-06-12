@@ -14,9 +14,9 @@
 
 
 </head>
-<body>
-    
-    <div class="sidebar d-inline-block">
+<body style="background-color: #ffffe6">
+
+    <div class="sidebar d-inline-block" style="background-color: #ffcc66">
         <a class="nav-link" href="~/Reserved/HomeProfessore/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><ion-icon name="laptop-outline"></ion-icon><h3 class="text-danger"> Red System</h3></a>
         <br />
         <a href="~/Reserved/HomeProfessore/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><ion-icon name="home-outline"></ion-icon><span class="text-dark"> Pagina principale</span></a>
@@ -29,12 +29,10 @@
         <br />
         <a href="~/Reserved/ProfessoreSelezionaVerifica/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><ion-icon name="checkbox-outline"></ion-icon><span class="text-dark"> Seleziona verifica</span></a>
         <br />
-        <a href="~/Reserved/ProfessoreSelezionaVerificaVisualizzaPunteggio/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><ion-icon name="checkbox-outline"></ion-icon><span class="text-dark"> Seleziona Verifica Visualizza Punteggio</span></a>
-        <br />
         <a href="~/Reserved/ProfessoreAssegnaVerifica/@(((Red_System.Models.Entities.Professore)Session["utenteLoggato"]).ID)"><ion-icon name="checkmark-done-outline"></ion-icon><span class="text-dark"> Assegna Verifica</span></a>
     </div>
-            <div class="text-center center-block">
-            @RenderBody()
-            </div>
+    <div class="text-center center-block">
+        @RenderBody()
+    </div>
 </body>
 </html>

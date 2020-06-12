@@ -443,10 +443,10 @@ namespace Red_System.Controllers
         }
 
         [HttpPost]
-        public ActionResult ProfessoreSelezionaClasseVisualizzaPunteggio(int id, ProfessoreSelezionaClasseVisualizzaPunteggioModel model)
+        public ActionResult ProfessoreSelezionaClasseVisualizzaPunteggio(int id,int verificaID, ProfessoreSelezionaClasseVisualizzaPunteggioModel model)
         { 
             model.ListaClasse = DatabaseHelper.GetAllClasse();
-            model.ListaSelectClasse = Helper.Helper.PrendiClasse();
+            model.ListaSelectClasse = Helper.Helper.PrendiClasseByIDVerifica(verificaID);
             SelectListItem y = model.ListaSelectClasse.Where(t => t.Value == model.ClasseSelectedValue).FirstOrDefault();
             model.ClasseID = Convert.ToInt32(y.Value);
 
@@ -457,9 +457,33 @@ namespace Red_System.Controllers
             model.Professore = (Professore)utenteLoggato;
             if (classe != null)
             {
-                return RedirectToAction("ProfessoreConfermaAssegnaVerifica", "Reserved", new { model.Professore.ID, classe});
+                return RedirectToAction("ProfessoreVisualizzaPunteggio", "Reserved", new { id = model.Professore.ID, verificaID = verificaID, classeID = classe.ID});
             }
 
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult ProfessoreVisualizzaPunteggio(int id, int verificaID)
+        {
+            var utenteLoggato = Session["utenteLoggato"];
+            if (utenteLoggato == null)
+            {
+                return RedirectToAction("LoginProfessore", "Home");
+            }
+
+            var model = new ProfessoreSelezionaClasseVisualizzaPunteggioModel();
+
+            model.Professore = (Professore)utenteLoggato;
+            if (model.Professore.ID != id)
+            {
+                return RedirectToAction("HomeProfessore", "Reserved", new { model.Professore.ID });
+            }
+
+            ProfessoreSelezionaClasseVisualizzaPunteggioLabel(model);
+
+            model.ListaSelectClasse = Helper.Helper.PrendiClasseByIDVerifica(verificaID);
+            //model.DomandeChiuse = DatabaseHelper.GetAllDomandeChiuse();
             return View(model);
         }
 
@@ -491,7 +515,6 @@ namespace Red_System.Controllers
 
             model.ListaSelectVerifica = Helper.Helper.PrendiVerifica();
 
-            
             //model.DomandeChiuse = DatabaseHelper.GetAllDomandeChiuse();
             return View(model);
         }
@@ -516,8 +539,6 @@ namespace Red_System.Controllers
 
             return View(model);
         }
-
-
 
         [HttpGet]
         public ActionResult Verifica(int id)
